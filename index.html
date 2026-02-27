@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Five Nights At Epstein's</title>
-    
-<style>
+    <base href="https://raw.githubusercontent.com/freedomgamingzone/freedomgamingzone.github.io/main/five-nights-at-epsteins-s2/">
+    <style>
 html {
     width: 100%;
     height: 100%;
@@ -701,6 +701,10 @@ button {
     z-index: 100;
 }
 
+#main-menu > h1 {
+    margin-top: -10vh; /* 整体上移 */
+}
+
 /* 星星图标 - 放在中间偏上位置 */
 #star-icon {
     position: absolute;
@@ -725,6 +729,19 @@ button {
     height: auto;
     z-index: 103;
     animation: star-glow 2s ease-in-out infinite 0.5s; /* 延迟0.5s，产生交替闪烁效果 */
+}
+
+/* 第三颗星星 - 在第二颗下面 (20/20/20通关) */
+#star-icon-3 {
+    position: absolute;
+    top: 29vh; /* 比第二颗低7vh */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5vw;
+    max-width: 80px;
+    height: auto;
+    z-index: 103;
+    animation: star-glow 2s ease-in-out infinite 1s; /* 延迟1s，产生交替闪烁效果 */
 }
 
 @keyframes star-glow {
@@ -804,6 +821,144 @@ button {
     font-weight: bold;
     letter-spacing: 2px;
     line-height: 1.2;
+}
+
+/* 音量按钮 */
+#volume-btn {
+    position: fixed;
+    top: 2vh;
+    right: 2vw;
+    padding: 15px 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 102; /* 在白噪声(101)上面，但低于其他UI(103) */
+    transition: all 0.2s;
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 3px;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
+}
+
+#volume-btn:hover {
+    transform: scale(1.05);
+    text-shadow: 4px 4px 12px rgba(0, 0, 0, 1);
+}
+
+/* 音量设置面板 */
+#volume-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.98);
+    border: 2px solid #666;
+    border-radius: 0;
+    padding: 20px;
+    z-index: 105; /* 面板要在最上面 */
+    min-width: 400px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#volume-panel h3 {
+    color: #ff0000;
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    margin-bottom: 15px;
+    margin-top: 0;
+    text-align: center;
+    letter-spacing: 3px;
+    text-shadow: 
+        0 0 10px #ff0000,
+        0 0 20px #ff0000,
+        2px 2px 4px #000;
+}
+
+.volume-item {
+    margin-bottom: 15px;
+}
+
+.volume-item label {
+    color: #ff0000;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    display: block;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 
+        0 0 5px #ff0000,
+        0 0 10px #ff0000;
+}
+
+.volume-slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.volume-slider-container input[type="range"] {
+    flex: 1;
+    height: 3px;
+    background: #333;
+    outline: none;
+    border-radius: 0;
+    cursor: pointer;
+    border: 1px solid #555;
+}
+
+.volume-slider-container input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #666;
+    border-radius: 0;
+    cursor: pointer;
+    border: 1px solid #888;
+}
+
+.volume-slider-container input[type="range"]::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #666;
+    border-radius: 0;
+    cursor: pointer;
+    border: 1px solid #888;
+}
+
+.volume-percent {
+    color: #777;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    min-width: 45px;
+    text-align: right;
+}
+
+#close-volume-panel {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    background: #222;
+    color: #888;
+    border: 1px solid #555;
+    border-radius: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 2px;
+}
+
+#close-volume-panel:hover {
+    background: #333;
+    color: #aaa;
+    border-color: #777;
 }
 
 #main-menu button {
@@ -1296,6 +1451,12 @@ button {
         top: 18vh; /* 比第一颗低8vh */
     }
     
+    #star-icon-3 {
+        width: 12vw;
+        max-width: 60px;
+        top: 26vh; /* 比第二颗低8vh */
+    }
+    
     #main-menu h1 {
         font-size: 10vw;
         margin-bottom: 8vh;
@@ -1585,6 +1746,46 @@ button {
     .cutscene-hint {
         font-size: 2vh;
     }
+    
+    /* Volume button landscape */
+    #volume-btn {
+        font-size: 2vh;
+        padding: 1vh 2vw;
+        top: 1vh;
+        right: 1vw;
+    }
+    
+    /* Volume panel landscape - 优化高度防止溢出 */
+    #volume-panel {
+        padding: 2vh 3vw;
+        min-width: 300px;
+        max-width: 70vw;
+        max-height: 85vh;
+    }
+    
+    #volume-panel h3 {
+        font-size: 2vh;
+        margin-bottom: 1.5vh;
+    }
+    
+    .volume-item {
+        margin-bottom: 1.5vh;
+    }
+    
+    .volume-item label {
+        font-size: 1.5vh;
+        margin-bottom: 0.5vh;
+    }
+    
+    .volume-percent {
+        font-size: 1.5vh;
+    }
+    
+    #close-volume-panel {
+        font-size: 1.8vh;
+        padding: 1vh;
+        margin-top: 1.5vh;
+    }
 }
 
 /* Prevent text selection on touch devices */
@@ -1616,9 +1817,222 @@ button {
     }
 }
 
-</style>
+
+/* ==================== Custom Night Menu ==================== */
+#custom-night-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 2vh;
+}
+
+#custom-night-menu h1 {
+    font-size: 5vw;
+    color: #fff;
+    margin-bottom: 4vh;
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.custom-night-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    width: 60%;
+    max-width: 800px;
+    margin-bottom: 4vh;
+}
+
+.ai-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(20, 20, 20, 0.8);
+    padding: 2vh 3vw;
+    border-radius: 10px;
+    border: 2px solid rgba(100, 100, 100, 0.3);
+    transition: all 0.3s;
+}
+
+.ai-control:hover {
+    background: rgba(40, 40, 40, 0.9);
+    border-color: rgba(150, 150, 150, 0.5);
+}
+
+.ai-name {
+    font-size: 2vw;
+    font-weight: bold;
+    color: #fff;
+    min-width: 150px;
+}
+
+.ai-slider-container {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    flex: 1;
+    margin: 0 2vw;
+}
+
+.ai-btn-minus,
+.ai-btn-plus {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    font-weight: bold;
+    background: rgba(50, 50, 50, 0.8);
+    border: 2px solid rgba(100, 100, 100, 0.5);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.2s;
+}
+
+.ai-btn-minus:hover,
+.ai-btn-plus:hover {
+    background: rgba(80, 80, 80, 0.9);
+    border-color: rgba(150, 150, 150, 0.7);
+    transform: scale(1.1);
+}
+
+.ai-btn-minus:active,
+.ai-btn-plus:active {
+    transform: scale(0.95);
+}
+
+.ai-slider {
+    flex: 1;
+    height: 8px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(80, 80, 80, 0.6);
+    border-radius: 5px;
+    outline: none;
+}
+
+.ai-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: #ddd;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(200, 200, 200, 0.5);
+    transition: all 0.2s;
+}
+
+.ai-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px rgba(220, 220, 220, 0.8);
+}
+
+.ai-slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    background: #ddd;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 10px rgba(200, 200, 200, 0.5);
+    transition: all 0.2s;
+}
+
+.ai-slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px rgba(220, 220, 220, 0.8);
+}
+
+.ai-value {
+    font-size: 2.5vw;
+    font-weight: bold;
+    color: #fff;
+    min-width: 60px;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.custom-night-buttons {
+    display: flex;
+    gap: 2vw;
+}
+
+.custom-night-buttons button {
+    padding: 1.5vh 3vw;
+    font-size: 1.5vw;
+    font-weight: bold;
+    background: rgba(50, 50, 50, 0.8);
+    border: 2px solid rgba(100, 100, 100, 0.5);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+    min-width: 150px;
+}
+
+.custom-night-buttons button:hover {
+    background: rgba(80, 80, 80, 0.9);
+    border-color: rgba(150, 150, 150, 0.7);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.custom-night-buttons button:active {
+    transform: translateY(0);
+}
+
+/* Mobile 适配 */
+@media (max-width: 768px) {
+    #custom-night-menu h1 {
+        font-size: 8vw;
+    }
+    
+    .custom-night-controls {
+        width: 90%;
+    }
+    
+    .ai-control {
+        flex-direction: column;
+        gap: 1vh;
+        padding: 2vh;
+    }
+    
+    .ai-name {
+        font-size: 5vw;
+        min-width: auto;
+    }
+    
+    .ai-slider-container {
+        width: 100%;
+        margin: 0;
+    }
+    
+    .ai-value {
+        font-size: 6vw;
+    }
+    
+    .custom-night-buttons {
+        flex-direction: column;
+        width: 80%;
+    }
+    
+    .custom-night-buttons button {
+        font-size: 4vw;
+        width: 100%;
+    }
+}
+
+    </style>
 </head>
 <body>
+    <!-- Standalone single-file build. Download/copy this file; assets resolve via the base raw GitHub URL. -->
 
     <div id="preloader">
         <div class="preloader-content">
@@ -1637,22 +2051,22 @@ button {
     </div>
 
     <div id="game-container">
-   
+ 
         <div id="game-screen">
             <img id="current-scene" src="" alt="" style="display: none;">
             
-       
+      
             <div id="hotspots"></div>
             
-      
+  
             <div id="ui-overlay">
-            
+   
                 <div id="top-left-ui">
                     <div id="time-display"><span id="time-value">12 AM</span></div>
                     <div id="night-display">NIGHT <span id="night-value">1</span></div>
                 </div>
                 
-         
+     
                 <div id="bottom-right-ui">
                     <div id="oxygen-display">
                         <img src="assets/images/fa3.png" alt="Vent" class="vent-icon">
@@ -1666,12 +2080,12 @@ button {
         <div id="camera-panel" class="hidden">
             <div id="current-cam-label">CAM 11</div>
             <div id="camera-error-label">ERR</div>
-  
+
             <div id="character-overlay"></div>
             <div id="camera-grid"></div>
             <button id="shock-hawking-btn">ELECTROCUTE</button>
             <button id="play-sound-btn">PLAY SOUND</button>
-       
+   
             <video id="camera-static-video" loop muted playsinline>
                 <source src="assets/vedio/202512191935.webm" type="video/webm">
             </video>
@@ -1683,24 +2097,121 @@ button {
             <div class="cutscene-hint">Click to continue...</div>
         </div>
 
-  
+
         <div id="night-intro" class="hidden">
             <div id="night-intro-text">NIGHT 1</div>
         </div>
 
-
+ 
         <div id="main-menu">
             <img id="star-icon" class="hidden" src="assets/images/star.png" alt="Star">
             <img id="star-icon-2" class="hidden" src="assets/images/star.png" alt="Star 2">
+            <img id="star-icon-3" class="hidden" src="assets/images/star.png" alt="Star 3">
+            
             <h1>FIVE<br>NIGHTS<br>AT<br>EPSTEIN'S</h1>
             <button id="start-game">NEW GAME</button>
             <button id="continue-game" class="hidden">CONTINUE</button>
             <button id="special-night-btn" class="hidden">EPSTEIN'S SPECIAL NIGHT</button>
+            <button id="custom-night-btn" class="hidden">CUSTOM NIGHT</button>
             <div class="copyright">© EVAN PRODUCTIONS</div>
-            <div class="version">v1.1.5</div>
+            <div class="version">v1.2.2</div>
         </div>
         
     
+        <button id="volume-btn" title="Volume Settings">SOUND SETTINGS</button>
+        
+  
+        <div id="volume-panel" class="hidden">
+            <h3>VOLUME SETTINGS</h3>
+            
+            <div class="volume-item">
+                <label>Master Volume</label>
+                <div class="volume-slider-container">
+                    <input type="range" id="master-volume" min="0" max="100" value="70" />
+                    <span class="volume-percent">70%</span>
+                </div>
+            </div>
+            
+            <div class="volume-item">
+                <label>Game Background Music</label>
+                <div class="volume-slider-container">
+                    <input type="range" id="game-bg-volume" min="0" max="100" value="70" />
+                    <span class="volume-percent">70%</span>
+                </div>
+            </div>
+            
+            <div class="volume-item">
+                <label>Menu Music</label>
+                <div class="volume-slider-container">
+                    <input type="range" id="menu-music-volume" min="0" max="100" value="70" />
+                    <span class="volume-percent">70%</span>
+                </div>
+            </div>
+            
+            <div class="volume-item">
+                <label>Jumpscare Sounds</label>
+                <div class="volume-slider-container">
+                    <input type="range" id="jumpscare-volume" min="0" max="100" value="70" />
+                    <span class="volume-percent">70%</span>
+                </div>
+            </div>
+            
+            <div class="volume-item">
+                <label>Trump Vent Crawling</label>
+                <div class="volume-slider-container">
+                    <input type="range" id="vent-crawling-volume" min="0" max="100" value="70" />
+                    <span class="volume-percent">70%</span>
+                </div>
+            </div>
+            
+            <button id="close-volume-panel">CLOSE</button>
+        </div>
+
+    
+        <div id="custom-night-menu" class="hidden">
+            <h1>CUSTOM NIGHT</h1>
+            <div class="custom-night-controls">
+            
+                <div class="ai-control">
+                    <div class="ai-name">EPSTEIN</div>
+                    <div class="ai-slider-container">
+                        <button class="ai-btn-minus" data-ai="epstein">-</button>
+                        <input type="range" id="epstein-slider" class="ai-slider" min="0" max="20" value="0">
+                        <button class="ai-btn-plus" data-ai="epstein">+</button>
+                    </div>
+                    <div class="ai-value" id="epstein-value">0</div>
+                </div>
+                
+      
+                <div class="ai-control">
+                    <div class="ai-name">TRUMP</div>
+                    <div class="ai-slider-container">
+                        <button class="ai-btn-minus" data-ai="trump">-</button>
+                        <input type="range" id="trump-slider" class="ai-slider" min="0" max="20" value="0">
+                        <button class="ai-btn-plus" data-ai="trump">+</button>
+                    </div>
+                    <div class="ai-value" id="trump-value">0</div>
+                </div>
+                
+         
+                <div class="ai-control">
+                    <div class="ai-name">HAWKING</div>
+                    <div class="ai-slider-container">
+                        <button class="ai-btn-minus" data-ai="hawking">-</button>
+                        <input type="range" id="hawking-slider" class="ai-slider" min="0" max="20" value="0">
+                        <button class="ai-btn-plus" data-ai="hawking">+</button>
+                    </div>
+                    <div class="ai-value" id="hawking-value">0</div>
+                </div>
+            </div>
+            
+            <div class="custom-night-buttons">
+                <button id="start-custom-night">START</button>
+                <button id="back-to-menu">BACK</button>
+            </div>
+        </div>
+        
+   
         <canvas id="static-canvas"></canvas>
         
  
@@ -1708,9 +2219,9 @@ button {
             <source src="assets/sounds/music3.ogg" type="audio/ogg">
         </audio>
 
-    
+   
         <div id="game-over" class="hidden">
-         
+  
             <video id="game-over-static" loop muted playsinline autoplay>
                 <source src="assets/vedio/202512191935.webm" type="video/webm">
             </video>
@@ -1722,7 +2233,7 @@ button {
             </div>
         </div>
 
-       
+
         <div id="tutorial-overlay" class="hidden">
             <div id="tutorial-content">
                 <h2>DEFEND YOURSELF AGAINST EPSTEIN</h2>
@@ -1739,24 +2250,103 @@ button {
         </div>
     </div>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 <script>
+/* js/GameState.js */
+// 游戏状态管理
+class GameState {
+    constructor() {
+        this.currentNight = 1;
+        this.maxNights = 5; // 当前版本有5晚（Night 1-5），Night 6 是特殊关卡
+        this.currentTime = 0; // 0-6 (12AM-6AM)
+        this.oxygen = 100; // 氧气替代电量
+        this.isGameRunning = false;
+        this.tutorialActive = false; // 教程是否激活
+        this.currentScene = 'office';
+        this.cameraOpen = false;
+        this.ventsClosed = false; // 通风口状态
+        this.ventsToggling = false; // 通风口是否正在切换
+        this.currentCam = 'cam11'; // 当前摄像头
+        this.cameraFailed = false; // 摄像头是否故障
+        this.cameraRestarting = false; // 摄像头是否正在重启
+        this.controlPanelBusy = false; // 控制面板是否正在处理操作
+        
+        // Custom Night 状态
+        this.customNight = false; // 是否为自定义夜晚
+        this.customAILevels = {
+            epstein: 0,
+            trump: 0,
+            hawking: 0
+        };
+    }
+
+    reset() {
+        this.currentTime = 0;
+        this.oxygen = 100;
+        this.isGameRunning = true;
+        this.tutorialActive = false;
+        this.currentScene = 'office';
+        this.cameraOpen = false;
+        this.ventsClosed = false;
+        this.ventsToggling = false;
+        this.currentCam = 'cam11';
+        this.cameraFailed = false;
+        this.cameraRestarting = false;
+        this.controlPanelBusy = false;
+        // 注意：不重置 customNight 和 customAILevels，因为它们在 initGame 之前设置
+    }
+}
+
+</script>
+
+<script>
+/* js/AssetManager.js */
 // 资源管理器
 class AssetManager {
     constructor() {
         this.images = {};
         this.sounds = {};
         this.loaded = false;
+        
+        // 分类音量设置
+        this.volumeSettings = this.loadVolumeSettings();
+    }
+    
+    // 从 localStorage 加载音量设置
+    loadVolumeSettings() {
+        const saved = localStorage.getItem('fnae_volume_settings');
+        if (saved) {
+            return JSON.parse(saved);
+        }
+        // 默认音量设置
+        return {
+            master: 0.7,
+            gameBg: 0.7,
+            menuMusic: 0.7,
+            jumpscare: 0.7,
+            ventCrawling: 0.7
+        };
+    }
+    
+    // 保存音量设置
+    saveVolumeSettings() {
+        localStorage.setItem('fnae_volume_settings', JSON.stringify(this.volumeSettings));
+    }
+    
+    // 设置特定类型的音量
+    setVolume(type, volume) {
+        this.volumeSettings[type] = Math.max(0, Math.min(1, volume));
+        this.saveVolumeSettings();
+    }
+    
+    // 获取特定类型的音量
+    getVolume(type) {
+        return this.volumeSettings[type] || 0.7;
+    }
+    
+    // 获取所有音量设置
+    getAllVolumes() {
+        return this.volumeSettings;
     }
 
     async loadAssets() {
@@ -1822,7 +2412,12 @@ class AssetManager {
     }
 
     getBasePath() {
-        // 本地开发环境 - 始终使用相对路径
+        // 检查是否在 iframe 中
+        const currentPath = window.location.pathname;
+        if (currentPath.includes('/FNAE-HTML5-1.2.2-fix/')) {
+            return '/FNAE-HTML5-1.2.2-fix/';
+        }
+        // 本地开发环境
         return './';
     }
 
@@ -1838,7 +2433,22 @@ class AssetManager {
     playSound(key, loop = false, volume = 1.0) {
         if (this.sounds[key]) {
             this.sounds[key].loop = loop;
-            this.sounds[key].volume = volume;
+            
+            // 根据音效类型应用对应的音量
+            let categoryVolume = this.volumeSettings.master;
+            
+            if (key === 'music' || key === 'music3') {
+                categoryVolume *= this.volumeSettings.menuMusic;
+            } else if (key === 'jumpscare' || key === 'hawkingJumpscare' || key === 'trumpJumpscare') {
+                categoryVolume *= this.volumeSettings.jumpscare;
+            } else if (key === 'ventCrawling') {
+                categoryVolume *= this.volumeSettings.ventCrawling;
+            } else if (key === 'vents' || key === 'ambience' || key === 'staticLoop' || key === 'static' || key === 'blip' || key === 'Blip') {
+                // 游戏背景音乐：包括通风口声音、静态噪声、摄像机切换声等
+                categoryVolume *= this.volumeSettings.gameBg;
+            }
+            
+            this.sounds[key].volume = Math.min(1, volume * categoryVolume);
             this.sounds[key].play();
         }
     }
@@ -1857,7 +2467,624 @@ class AssetManager {
     }
 }
 
+</script>
 
+<script>
+/* js/UIManager.js */
+// UI Manager
+class UIManager {
+    constructor(game) {
+        this.game = game;
+        this.initElements();
+    }
+
+    initElements() {
+        this.powerValue = document.getElementById('power-value');
+        this.timeValue = document.getElementById('time-value');
+        this.nightValue = document.getElementById('night-value');
+        this.currentSceneImg = document.getElementById('current-scene');
+    }
+
+    update() {
+        this.powerValue.textContent = Math.floor(this.game.state.oxygen);
+        this.timeValue.textContent = `${this.game.state.currentTime === 0 ? 12 : this.game.state.currentTime} AM`;
+        
+        // Custom Night 显示为 "7" 或 "CUSTOM"
+        if (this.game.state.customNight && this.game.state.currentNight === 7) {
+            this.nightValue.textContent = '7';
+        } else {
+            this.nightValue.textContent = this.game.state.currentNight;
+        }
+        
+        // Only update scene image when camera is not open
+        if (!this.game.state.cameraOpen) {
+            const sceneKey = 'office';
+            if (this.game.assets.images[sceneKey]) {
+                this.currentSceneImg.src = this.game.assets.images[sceneKey].src;
+                this.currentSceneImg.style.display = 'block';
+            }
+        }
+        
+        // Flash warning when oxygen below 40%
+        if (this.game.state.oxygen <= 40 && this.game.state.ventsClosed) {
+            this.powerValue.classList.add('flicker');
+        } else {
+            this.powerValue.classList.remove('flicker');
+        }
+        
+        // Update camera status
+        this.updateCameraStatus();
+    }
+
+    createHotspots() {
+        const hotspotsContainer = document.getElementById('hotspots');
+        hotspotsContainer.innerHTML = '';
+        
+        // Create control panel button (special style)
+        this.createControlPanelButton();
+        
+        // Create camera button (special style)
+        this.createCameraButton();
+        
+        // Bind close camera button event
+        this.bindCloseCameraButton();
+    }
+
+    createControlPanelButton() {
+        const hotspotsContainer = document.getElementById('hotspots');
+        
+        const controlBtn = document.createElement('div');
+        controlBtn.id = 'vents-btn';
+        controlBtn.className = 'control-panel-button';
+        controlBtn.style.position = 'absolute';
+        controlBtn.style.left = '0';
+        controlBtn.style.bottom = '0';
+        controlBtn.style.width = '25vw';
+        controlBtn.style.height = '10vh';
+        controlBtn.style.background = 'rgba(0, 0, 0, 0.7)';
+        controlBtn.style.border = '2px solid rgba(255, 255, 255, 0.3)';
+        controlBtn.style.borderLeft = 'none';
+        controlBtn.style.borderBottom = 'none';
+        controlBtn.style.display = 'flex';
+        controlBtn.style.flexDirection = 'row';
+        controlBtn.style.alignItems = 'center';
+        controlBtn.style.justifyContent = 'space-between';
+        controlBtn.style.cursor = 'pointer';
+        controlBtn.style.opacity = '0';
+        controlBtn.style.transition = 'opacity 0.3s, background 0.3s';
+        controlBtn.style.padding = '0 1.5vw';
+        controlBtn.style.pointerEvents = 'none';
+        
+        // Left arrows container
+        const leftArrows = document.createElement('div');
+        leftArrows.style.display = 'flex';
+        leftArrows.style.gap = '0.8vw';
+        leftArrows.className = 'control-arrows';
+        leftArrows.style.flexShrink = '0';
+        
+        const arrowLeft1 = document.createElement('div');
+        arrowLeft1.innerHTML = '▲';
+        arrowLeft1.style.color = '#fff';
+        arrowLeft1.style.fontSize = '2vw';
+        arrowLeft1.style.lineHeight = '1';
+        leftArrows.appendChild(arrowLeft1);
+        
+        const arrowLeft2 = document.createElement('div');
+        arrowLeft2.innerHTML = '▲';
+        arrowLeft2.style.color = '#fff';
+        arrowLeft2.style.fontSize = '2vw';
+        arrowLeft2.style.lineHeight = '1';
+        leftArrows.appendChild(arrowLeft2);
+        
+        controlBtn.appendChild(leftArrows);
+        
+        // CONTROL PANEL text
+        const text = document.createElement('div');
+        text.textContent = 'CONTROL PANEL';
+        text.style.color = '#fff';
+        text.style.fontSize = '1.8vw';
+        text.style.fontWeight = 'bold';
+        text.style.fontFamily = 'Arial, sans-serif';
+        text.style.letterSpacing = '0.15vw';
+        text.style.whiteSpace = 'nowrap';
+        text.style.flex = '1';
+        text.style.textAlign = 'center';
+        controlBtn.appendChild(text);
+        
+        // Right arrows container
+        const rightArrows = document.createElement('div');
+        rightArrows.style.display = 'flex';
+        rightArrows.style.gap = '0.8vw';
+        rightArrows.className = 'control-arrows';
+        rightArrows.style.flexShrink = '0';
+        
+        const arrowRight1 = document.createElement('div');
+        arrowRight1.innerHTML = '▲';
+        arrowRight1.style.color = '#fff';
+        arrowRight1.style.fontSize = '2vw';
+        arrowRight1.style.lineHeight = '1';
+        rightArrows.appendChild(arrowRight1);
+        
+        const arrowRight2 = document.createElement('div');
+        arrowRight2.innerHTML = '▲';
+        arrowRight2.style.color = '#fff';
+        arrowRight2.style.fontSize = '2vw';
+        arrowRight2.style.lineHeight = '1';
+        rightArrows.appendChild(arrowRight2);
+        
+        controlBtn.appendChild(rightArrows);
+        
+        // Hover effect
+        controlBtn.addEventListener('mouseenter', () => {
+            controlBtn.style.background = 'rgba(0, 0, 0, 0.9)';
+        });
+        
+        controlBtn.addEventListener('mouseleave', () => {
+            controlBtn.style.background = 'rgba(0, 0, 0, 0.7)';
+        });
+        
+        // Click event - open control panel popup
+        controlBtn.addEventListener('click', () => {
+            this.toggleControlPanel();
+            setTimeout(() => this.updateControlPanelArrows(), 50);
+        });
+        
+        hotspotsContainer.appendChild(controlBtn);
+    }
+
+    updateControlPanelArrows() {
+        const controlBtn = document.getElementById('vents-btn');
+        if (!controlBtn) return;
+        
+        const arrows = controlBtn.querySelectorAll('.control-arrows div');
+        const isOpen = document.getElementById('control-panel-popup') && 
+                      !document.getElementById('control-panel-popup').classList.contains('hidden');
+        
+        // Before panel opens: arrows point up ▲
+        // Before panel closes: arrows point down ▼
+        arrows.forEach((arrow) => {
+            arrow.innerHTML = isOpen ? '▼' : '▲';
+        });
+    }
+
+    toggleControlPanel() {
+        const panel = document.getElementById('control-panel-popup');
+        if (panel) {
+            const wasHidden = panel.classList.contains('hidden');
+            
+            // 如果要关闭面板，检查是否有操作正在进行
+            if (!wasHidden && this.game.state.controlPanelBusy) {
+                // console.log('Cannot close control panel: operation in progress');
+                return; // 阻止关闭，不显示任何消息
+            }
+            
+            panel.classList.toggle('hidden');
+            
+            // Control view rotation
+            if (wasHidden) {
+                // Open panel, stop rotation
+                this.game.isRotatingLeft = false;
+                this.game.isRotatingRight = false;
+                this.game.state.controlPanelOpen = true;
+            } else {
+                // Close panel
+                this.game.state.controlPanelOpen = false;
+            }
+        } else {
+            this.createControlPanelPopup();
+            this.game.isRotatingLeft = false;
+            this.game.isRotatingRight = false;
+            this.game.state.controlPanelOpen = true;
+        }
+    }
+
+    createControlPanelPopup() {
+        const popup = document.createElement('div');
+        popup.id = 'control-panel-popup';
+        popup.style.position = 'fixed';
+        popup.style.top = '10vh';
+        popup.style.left = '10vw';
+        popup.style.width = '70vw';
+        popup.style.minHeight = '60vh';
+        popup.style.background = '#000';
+        popup.style.border = '4px solid #0f0';
+        popup.style.padding = '4vh 4vw';
+        popup.style.zIndex = '100';
+        popup.style.fontFamily = "'Courier New', monospace";
+        popup.style.color = '#0f0';
+        
+        // Title
+        const title = document.createElement('div');
+        title.textContent = '/// Control Panel';
+        title.style.fontSize = '2.5vw';
+        title.style.fontWeight = 'bold';
+        title.style.marginBottom = '5vh';
+        popup.appendChild(title);
+        
+        // Options container
+        const optionsContainer = document.createElement('div');
+        optionsContainer.id = 'control-options';
+        
+        // Option 1: Air Vents
+        const option1 = document.createElement('div');
+        option1.id = 'option-vents';
+        option1.style.fontSize = '2.5vw';
+        option1.style.marginBottom = '4vh';
+        option1.style.cursor = 'pointer';
+        option1.style.padding = '1.5vh 0';
+        option1.style.display = 'flex';
+        option1.style.alignItems = 'center';
+        option1.style.direction = 'ltr'; // 强制从左到右
+        option1.innerHTML = this.game.state.ventsClosed ? 
+            '<span class="option-arrow" style="color: #0f0; margin-right: 1.5vw; width: 2vw;">&gt;</span><span>Open Air Vents</span><span id="vents-dots" style="margin-left: 1vw; direction: ltr; font-family: \'Courier New\', monospace;"></span>' :
+            '<span class="option-arrow" style="color: #0f0; margin-right: 1.5vw; width: 2vw;">&gt;</span><span>Close Air Vents</span><span id="vents-dots" style="margin-left: 1vw; direction: ltr; font-family: \'Courier New\', monospace;"></span>';
+        option1.addEventListener('click', () => {
+            this.game.toggleVents();
+            // 不在这里立即更新，等toggleVents完成后会自动调用updateControlPanelOptions
+        });
+        optionsContainer.appendChild(option1);
+        
+        // Option 2: Restart Cameras
+        const option2 = document.createElement('div');
+        option2.id = 'option-cameras';
+        option2.style.fontSize = '2.5vw';
+        option2.style.cursor = 'pointer';
+        option2.style.padding = '1.5vh 0';
+        option2.style.display = 'flex';
+        option2.style.alignItems = 'center';
+        option2.style.direction = 'ltr'; // 强制从左到右
+        option2.innerHTML = '<span class="option-arrow" style="color: transparent; margin-right: 1.5vw; width: 2vw;">&gt;</span><span>Restart Cameras</span><span id="camera-dots" style="margin-left: 1vw; direction: ltr; font-family: \'Courier New\', monospace;"></span><span id="camera-status" style="margin-left: auto; padding-right: 2vw; direction: ltr;"></span>';
+        option2.addEventListener('click', () => {
+            this.selectControlOption('cameras');
+            this.handleRestartCamera();
+        });
+        optionsContainer.appendChild(option2);
+        
+        popup.appendChild(optionsContainer);
+        
+        // Click outside to close (only if no operation in progress)
+        document.addEventListener('click', (e) => {
+            if (!popup.contains(e.target) && e.target.id !== 'vents-btn' && !e.target.closest('#vents-btn')) {
+                // 检查是否有操作正在进行
+                if (this.game.state.controlPanelBusy) {
+                    // console.log('Cannot close control panel: operation in progress');
+                    return; // 阻止关闭，不显示任何消息
+                }
+                
+                popup.classList.add('hidden');
+                this.game.state.controlPanelOpen = false;
+                this.updateControlPanelArrows();
+            }
+        });
+        
+        document.body.appendChild(popup);
+    }
+
+    selectControlOption(option) {
+        const option1 = document.getElementById('option-vents');
+        const option2 = document.getElementById('option-cameras');
+        
+        if (option === 'vents') {
+            const arrow1 = option1.querySelector('.option-arrow');
+            const arrow2 = option2.querySelector('.option-arrow');
+            if (arrow1) arrow1.style.color = '#0f0';
+            if (arrow2) arrow2.style.color = 'transparent';
+            
+            // 更新通风口文本（不包括dots span）
+            const text1 = option1.querySelector('span:nth-child(2)');
+            if (text1) {
+                text1.textContent = this.game.state.ventsClosed ? 'Open Air Vents' : 'Close Air Vents';
+            }
+        } else {
+            const arrow1 = option1.querySelector('.option-arrow');
+            const arrow2 = option2.querySelector('.option-arrow');
+            if (arrow1) arrow1.style.color = 'transparent';
+            if (arrow2) arrow2.style.color = '#0f0';
+        }
+    }
+
+    updateControlPanelOptions() {
+        this.selectControlOption('vents');
+        this.updateCameraStatus();
+        this.updateVentsStatus(); // 添加通风口状态更新
+    }
+    
+    // Update vents status display (dots animation)
+    updateVentsStatus() {
+        const dotsSpan = document.getElementById('vents-dots');
+        if (!dotsSpan) return;
+        
+        if (this.game.state.ventsToggling) {
+            // 正在切换，显示点动画
+            dotsSpan.style.color = '#0f0'; // Green dots
+            if (!dotsSpan.dataset.animating) {
+                dotsSpan.dataset.animating = 'true';
+                this.animateLoadingDots(dotsSpan);
+            }
+        } else {
+            // 不在切换中，清空点
+            dotsSpan.textContent = '';
+            delete dotsSpan.dataset.animating;
+        }
+    }
+    
+    // Update camera status display
+    updateCameraStatus() {
+        const statusSpan = document.getElementById('camera-status');
+        const dotsSpan = document.getElementById('camera-dots');
+        if (!statusSpan) return;
+        
+        if (this.game.state.cameraRestarting) {
+            // Restarting, show dots after button
+            if (dotsSpan) {
+                dotsSpan.style.color = '#0f0'; // Green dots
+                if (!dotsSpan.dataset.animating) {
+                    dotsSpan.dataset.animating = 'true';
+                    this.animateLoadingDots(dotsSpan);
+                }
+            }
+            // 只有在摄像头确实故障时才显示ERR
+            if (this.game.state.cameraFailed) {
+                statusSpan.style.color = '#f00';
+                statusSpan.textContent = 'ERR';
+            } else {
+                // 没有故障时，重启期间不显示ERR
+                statusSpan.textContent = '';
+            }
+        } else if (this.game.state.cameraFailed) {
+            // Failed, show ERR on right, no dots
+            if (dotsSpan) {
+                dotsSpan.textContent = '';
+                delete dotsSpan.dataset.animating;
+            }
+            statusSpan.style.color = '#f00';
+            statusSpan.textContent = 'ERR';
+        } else {
+            // Normal, don't show anything
+            if (dotsSpan) {
+                dotsSpan.textContent = '';
+                delete dotsSpan.dataset.animating;
+            }
+            statusSpan.textContent = '';
+        }
+    }
+    
+    // Animate loading dots (green dots after button)
+    animateLoadingDots(element) {
+        const states = ['.', '..', '...'];
+        let index = 0;
+        
+        const animate = () => {
+            if (!element.dataset.animating) return;
+            
+            element.textContent = states[index];
+            // console.log('Dots animation:', states[index]); // 调试输出
+            index = (index + 1) % states.length;
+            
+            setTimeout(animate, 500); // Switch every 0.5s
+        };
+        
+        animate();
+    }
+    
+    // Animate display (dots after button, ERR on right) - 不再使用
+    animateLoadingDotsWithERR(element) {
+        // 已废弃，使用 animateLoadingDots 代替
+    }
+    
+    // Handle restart camera
+    handleRestartCamera() {
+        // 允许在摄像头没有故障时也能重启（作为策略使用）
+        if (!this.game.state.cameraRestarting && !this.game.state.controlPanelBusy) {
+            // console.log('Restarting cameras...');
+            this.game.camera.restartCamera();
+            
+            // Immediately update status display (show loading animation, but ERR doesn't disappear)
+            this.updateCameraStatus();
+            
+            // Update status display every 100ms
+            const updateInterval = setInterval(() => {
+                this.updateCameraStatus();
+                if (!this.game.state.cameraRestarting) {
+                    clearInterval(updateInterval);
+                }
+            }, 100);
+        }
+    }
+
+    createCameraButton() {
+        const hotspotsContainer = document.getElementById('hotspots');
+        
+        const cameraBtn = document.createElement('div');
+        cameraBtn.id = 'camera-btn';
+        cameraBtn.className = 'camera-button';
+        cameraBtn.style.position = 'absolute';
+        cameraBtn.style.right = '0';
+        cameraBtn.style.top = '25%';
+        cameraBtn.style.width = '6vw';
+        cameraBtn.style.height = '45vh';
+        cameraBtn.style.background = 'rgba(0, 0, 0, 0.7)';
+        cameraBtn.style.border = '2px solid rgba(255, 255, 255, 0.3)';
+        cameraBtn.style.borderRight = 'none';
+        cameraBtn.style.display = 'flex';
+        cameraBtn.style.flexDirection = 'column';
+        cameraBtn.style.alignItems = 'center';
+        cameraBtn.style.justifyContent = 'space-between';
+        cameraBtn.style.cursor = 'pointer';
+        cameraBtn.style.opacity = '0';
+        cameraBtn.style.transition = 'opacity 0.3s, background 0.3s';
+        cameraBtn.style.padding = '2vh 0';
+        cameraBtn.style.pointerEvents = 'none';
+        
+        // Top arrows container
+        const topArrows = document.createElement('div');
+        topArrows.style.display = 'flex';
+        topArrows.style.flexDirection = 'column';
+        topArrows.style.gap = '0.5vh';
+        
+        // Top arrow (points left when closed)
+        const arrowTop = document.createElement('div');
+        arrowTop.innerHTML = '◄';
+        arrowTop.className = 'camera-arrow';
+        arrowTop.style.color = '#fff';
+        arrowTop.style.fontSize = '1.8vw';
+        arrowTop.style.transform = 'rotate(0deg)';
+        arrowTop.style.lineHeight = '1';
+        topArrows.appendChild(arrowTop);
+        
+        // Second arrow
+        const arrowTop2 = document.createElement('div');
+        arrowTop2.innerHTML = '◄';
+        arrowTop2.className = 'camera-arrow';
+        arrowTop2.style.color = '#fff';
+        arrowTop2.style.fontSize = '1.8vw';
+        arrowTop2.style.transform = 'rotate(0deg)';
+        arrowTop2.style.lineHeight = '1';
+        topArrows.appendChild(arrowTop2);
+        
+        cameraBtn.appendChild(topArrows);
+        
+        // CAMERA text (horizontal text rotated 90 degrees counterclockwise)
+        const text = document.createElement('div');
+        text.textContent = 'CAMERA';
+        text.style.color = '#fff';
+        text.style.fontSize = '1.3vw';
+        text.style.fontWeight = 'bold';
+        text.style.fontFamily = 'Arial, sans-serif';
+        text.style.transform = 'rotate(-90deg)';
+        text.style.letterSpacing = '0.2vw';
+        text.style.whiteSpace = 'nowrap';
+        cameraBtn.appendChild(text);
+        
+        // Bottom arrows container
+        const bottomArrows = document.createElement('div');
+        bottomArrows.style.display = 'flex';
+        bottomArrows.style.flexDirection = 'column';
+        bottomArrows.style.gap = '0.5vh';
+        
+        // Bottom arrow
+        const arrowBottom = document.createElement('div');
+        arrowBottom.innerHTML = '◄';
+        arrowBottom.className = 'camera-arrow';
+        arrowBottom.style.color = '#fff';
+        arrowBottom.style.fontSize = '1.8vw';
+        arrowBottom.style.transform = 'rotate(0deg)';
+        arrowBottom.style.lineHeight = '1';
+        bottomArrows.appendChild(arrowBottom);
+        
+        // Second bottom arrow
+        const arrowBottom2 = document.createElement('div');
+        arrowBottom2.innerHTML = '◄';
+        arrowBottom2.className = 'camera-arrow';
+        arrowBottom2.style.color = '#fff';
+        arrowBottom2.style.fontSize = '1.8vw';
+        arrowBottom2.style.transform = 'rotate(0deg)';
+        arrowBottom2.style.lineHeight = '1';
+        bottomArrows.appendChild(arrowBottom2);
+        
+        cameraBtn.appendChild(bottomArrows);
+        
+        // Hover effect
+        cameraBtn.addEventListener('mouseenter', () => {
+            cameraBtn.style.background = 'rgba(0, 0, 0, 0.9)';
+        });
+        
+        cameraBtn.addEventListener('mouseleave', () => {
+            cameraBtn.style.background = 'rgba(0, 0, 0, 0.7)';
+        });
+        
+        // Click event
+        cameraBtn.addEventListener('click', () => {
+            // console.log('📷 Camera button clicked!');
+            this.game.toggleCamera();
+            // Delay arrow update, wait for state change
+            setTimeout(() => this.updateCameraButtonArrows(), 50);
+        });
+        
+        hotspotsContainer.appendChild(cameraBtn);
+    }
+
+    bindCloseCameraButton() {
+        // Close button removed - camera button is now always accessible
+    }
+
+    updateCameraButtonArrows() {
+        const cameraBtn = document.getElementById('camera-btn');
+        if (!cameraBtn) return;
+        
+        const arrows = cameraBtn.querySelectorAll('.camera-arrow');
+        const isOpen = this.game.state.cameraOpen;
+        
+        // Update arrow direction
+        // Before opening (closed state): arrows point left (0deg)
+        // Before closing (open state): arrows point right (180deg)
+        arrows.forEach((arrow) => {
+            arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+        });
+    }
+
+    updateHotspotVisibility(viewPosition) {
+        const ventsBtn = document.getElementById('vents-btn');
+        const cameraBtn = document.getElementById('camera-btn');
+        
+        // console.log('🔍 updateHotspotVisibility - viewPosition:', viewPosition);
+        
+        // Show control panel when view is at far left (viewPosition = 0)
+        if (ventsBtn) {
+            ventsBtn.style.opacity = viewPosition < 0.15 ? '1' : '0';
+            ventsBtn.style.pointerEvents = viewPosition < 0.15 ? 'auto' : 'none';
+        }
+        
+        // Show camera button when view is at far right (viewPosition = 1)
+        if (cameraBtn) {
+            const isVisible = viewPosition > 0.85;
+            cameraBtn.style.opacity = isVisible ? '1' : '0';
+            cameraBtn.style.pointerEvents = isVisible ? 'auto' : 'none';
+            // console.log('📷 Camera button - opacity:', cameraBtn.style.opacity, 'pointerEvents:', cameraBtn.style.pointerEvents);
+        }
+    }
+
+    showTooltip(event, text) {
+        let tooltip = document.getElementById('game-tooltip');
+        if (!tooltip) {
+            tooltip = document.createElement('div');
+            tooltip.id = 'game-tooltip';
+            tooltip.style.position = 'fixed';
+            tooltip.style.background = 'rgba(0, 0, 0, 0.8)';
+            tooltip.style.color = 'white';
+            tooltip.style.padding = '8px 12px';
+            tooltip.style.borderRadius = '4px';
+            tooltip.style.fontSize = '14px';
+            tooltip.style.pointerEvents = 'none';
+            tooltip.style.zIndex = '10000';
+            tooltip.style.whiteSpace = 'nowrap';
+            document.body.appendChild(tooltip);
+        }
+        
+        tooltip.textContent = text;
+        tooltip.style.display = 'block';
+        tooltip.style.left = event.clientX + 10 + 'px';
+        tooltip.style.top = event.clientY + 10 + 'px';
+    }
+
+    hideTooltip() {
+        const tooltip = document.getElementById('game-tooltip');
+        if (tooltip) {
+            tooltip.style.display = 'none';
+        }
+    }
+
+    updateViewPosition(viewPosition) {
+        const offset = -viewPosition * 50;
+        this.currentSceneImg.style.left = `${offset}%`;
+        this.updateHotspotVisibility(viewPosition);
+    }
+}
+
+</script>
+
+<script>
+/* js/CameraSystem.js */
 // Camera system management
 class CameraSystem {
     constructor(game) {
@@ -2802,11 +4029,21 @@ class CameraSystem {
         }, 1000);
     }
     
-    // 更新电击按钮显示（只在cam6且第3-5关才显示，Night 6不显示）
+    // 更新电击按钮显示（Night 3-5 和 Custom Night 中 Hawking 激活时显示）
     updateShockButtonVisibility() {
         if (this.shockHawkingBtn) {
             const currentCam = this.game.state.currentCam;
-            if (this.game.state.currentNight >= 3 && this.game.state.currentNight <= 5 && this.game.state.cameraOpen && currentCam === 'cam6') {
+            const night = this.game.state.currentNight;
+            
+            // Night 3-5 显示
+            const isNormalNight = night >= 3 && night <= 5;
+            
+            // Custom Night 且 Hawking AI > 0 时显示
+            const isCustomNightWithHawking = this.game.state.customNight && 
+                                            night === 7 && 
+                                            this.game.state.customAILevels.hawking > 0;
+            
+            if ((isNormalNight || isCustomNightWithHawking) && this.game.state.cameraOpen && currentCam === 'cam6') {
                 this.shockHawkingBtn.style.display = 'block';
             } else {
                 this.shockHawkingBtn.style.display = 'none';
@@ -2894,7 +4131,10 @@ class CameraSystem {
     }
 }
 
+</script>
 
+<script>
+/* js/EnemyAI.js */
 // 敌人AI系统 - 基于FNAF机制
 class EnemyAI {
     constructor(game) {
@@ -2933,11 +4173,11 @@ class EnemyAI {
                 movementDuration: 1000,
                 spawnDelay: 0,
                 movementProbability: {
-                    forward: 0.9,
-                    lateral: 0.1,
+                    forward: 0.8,
+                    lateral: 0.2,
                     backward: 0
                 },
-                soundLureResistance: 0.15  // Night 3开始：15%概率抵抗sound吸引
+                soundLureResistance: 0.1  // Night 3开始：15%概率抵抗sound吸引
             },
             4: {
                 aiLevel: 12,
@@ -3000,18 +4240,18 @@ class EnemyAI {
                 }
             },
             3: {
-                aiLevel: 13,              // 65%移动概率
-                movementInterval: [8000, 9000],  // 8-9秒随机（比EP快一点）
+                aiLevel: 11,              // 降低到55%移动概率（从65%）
+                movementInterval: [9000, 10000],  // 改为9-10秒（从8-9秒）
                 movementDuration: 1000,
                 spawnDelay: 0,
                 movementProbability: {
-                    forward: 0.8,         // 80% 前进
-                    lateral: 0.2,         // 20% 平移（增加不可预测性）
+                    forward: 0.75,        // 降低到75%前进（从80%）
+                    lateral: 0.25,        // 增加到25%平移
                     backward: 0.0
                 },
                 ventCrawling: {
                     cam1Probability: 1.0,
-                    cam2Probability: 0.5,
+                    cam2Probability: 0.4, // 降低到40%（从50%）
                     soundDelay: 5000,
                     soundDuration: 10000,
                     totalDuration: 20000,
@@ -3100,47 +4340,47 @@ class EnemyAI {
         
         // 每个摄像头使用的角色图片（根据距离办公室远近）
         this.characterImages = {
-            'cam11': '/FNAE-HTML5-1.1.5/assets/images/enemyep1.png',
-            'cam10': '/FNAE-HTML5-1.1.5/assets/images/ep1.png',
-            'cam1': '/FNAE-HTML5-1.1.5/assets/images/ep4.png',
-            'cam9': '/FNAE-HTML5-1.1.5/assets/images/enemyep1.png',
-            'cam8': '/FNAE-HTML5-1.1.5/assets/images/enemyep1.png',
-            'cam7': '/FNAE-HTML5-1.1.5/assets/images/enemyep1.png',
-            'cam6': '/FNAE-HTML5-1.1.5/assets/images/enemyep1.png',
-            'cam5': '/FNAE-HTML5-1.1.5/assets/images/enemyep4.png',
-            'cam4': '/FNAE-HTML5-1.1.5/assets/images/ep1.png',
-            'cam3': '/FNAE-HTML5-1.1.5/assets/images/ep4.png',
-            'cam2': '/FNAE-HTML5-1.1.5/assets/images/enemyep1.png',
+            'cam11': 'assets/images/enemyep1.png',
+            'cam10': 'assets/images/ep1.png',
+            'cam1': 'assets/images/ep4.png',
+            'cam9': 'assets/images/enemyep1.png',
+            'cam8': 'assets/images/enemyep1.png',
+            'cam7': 'assets/images/enemyep1.png',
+            'cam6': 'assets/images/enemyep1.png',
+            'cam5': 'assets/images/enemyep4.png',
+            'cam4': 'assets/images/ep1.png',
+            'cam3': 'assets/images/ep4.png',
+            'cam2': 'assets/images/enemyep1.png',
         };
         
         // Night 6 专用图片（带电眼）
         this.characterImagesNight6 = {
-            'cam11': '/FNAE-HTML5-1.1.5/assets/images/enemyep1_night6.png',
-            'cam10': '/FNAE-HTML5-1.1.5/assets/images/ep1_night6.png',
-            'cam1': '/FNAE-HTML5-1.1.5/assets/images/ep4_night6.png',
-            'cam9': '/FNAE-HTML5-1.1.5/assets/images/enemyep1_night6.png',
-            'cam8': '/FNAE-HTML5-1.1.5/assets/images/enemyep1_night6.png',
-            'cam7': '/FNAE-HTML5-1.1.5/assets/images/enemyep1_night6.png',
-            'cam6': '/FNAE-HTML5-1.1.5/assets/images/enemyep1_night6.png',
-            'cam5': '/FNAE-HTML5-1.1.5/assets/images/enemyep4_night6.png',
-            'cam4': '/FNAE-HTML5-1.1.5/assets/images/ep1_night6.png',
-            'cam3': '/FNAE-HTML5-1.1.5/assets/images/ep4_night6.png',
-            'cam2': '/FNAE-HTML5-1.1.5/assets/images/enemyep1_night6.png',
+            'cam11': 'assets/images/enemyep1_night6.png',
+            'cam10': 'assets/images/ep1_night6.png',
+            'cam1': 'assets/images/ep4_night6.png',
+            'cam9': 'assets/images/enemyep1_night6.png',
+            'cam8': 'assets/images/enemyep1_night6.png',
+            'cam7': 'assets/images/enemyep1_night6.png',
+            'cam6': 'assets/images/enemyep1_night6.png',
+            'cam5': 'assets/images/enemyep4_night6.png',
+            'cam4': 'assets/images/ep1_night6.png',
+            'cam3': 'assets/images/ep4_night6.png',
+            'cam2': 'assets/images/enemyep1_night6.png',
         };
         
         // 特朗普的图片配置（使用绝对路径）
         this.trumpImages = {
-            'cam10': '/FNAE-HTML5-1.1.5/assets/images/trump3.png',
-            'cam11': '/FNAE-HTML5-1.1.5/assets/images/trump3.png',
-            'cam9': '/FNAE-HTML5-1.1.5/assets/images/trump.png',
-            'cam8': '/FNAE-HTML5-1.1.5/assets/images/trump5.png',
-            'cam7': '/FNAE-HTML5-1.1.5/assets/images/trump3.png',
-            'cam6': '/FNAE-HTML5-1.1.5/assets/images/trump3.png',
-            'cam5': '/FNAE-HTML5-1.1.5/assets/images/trump2.png',
-            'cam1': '/FNAE-HTML5-1.1.5/assets/images/trump4.png',
-            'cam2': '/FNAE-HTML5-1.1.5/assets/images/trump4.png',
-            'cam3': '/FNAE-HTML5-1.1.5/assets/images/trump2.png',
-            'cam4': '/FNAE-HTML5-1.1.5/assets/images/trump3.png',
+            'cam10': 'assets/images/trump3.png',
+            'cam11': 'assets/images/trump3.png',
+            'cam9': 'assets/images/trump.png',
+            'cam8': 'assets/images/trump5.png',
+            'cam7': 'assets/images/trump3.png',
+            'cam6': 'assets/images/trump3.png',
+            'cam5': 'assets/images/trump2.png',
+            'cam1': 'assets/images/trump4.png',
+            'cam2': 'assets/images/trump4.png',
+            'cam3': 'assets/images/trump2.png',
+            'cam4': 'assets/images/trump3.png',
         };
         
         // 定义移动路径图（根据地图连接关系，只能向前移动）
@@ -3357,16 +4597,20 @@ class EnemyAI {
         console.log(`Night ${this.game.state.currentNight} - Epstein AI Config:`, this.currentEpsteinConfig);
         console.log(`Epstein will spawn in ${this.currentEpsteinConfig.spawnDelay / 1000} seconds...`);
         
-        // 根据配置延迟后EP出场
-        const spawnTimer = setTimeout(() => {
-            console.log(`⏰ Spawn timer triggered after ${this.currentEpsteinConfig.spawnDelay}ms`);
-            this.spawnEpstein();
-        }, this.currentEpsteinConfig.spawnDelay);
+        // 根据配置延迟后EP出场（如果AI等级>0）
+        if (this.epstein.aiLevel > 0) {
+            const spawnTimer = setTimeout(() => {
+                console.log(`⏰ Spawn timer triggered after ${this.currentEpsteinConfig.spawnDelay}ms`);
+                this.spawnEpstein();
+            }, this.currentEpsteinConfig.spawnDelay);
+            
+            console.log(`⏰ Spawn timer created:`, spawnTimer);
+        } else {
+            console.log('Epstein AI level is 0, not spawning');
+        }
         
-        console.log(`⏰ Spawn timer created:`, spawnTimer);
-        
-        // 第2-5晚，特朗普出场（Night 6 没有 Trump）
-        if (this.game.state.currentNight >= 2 && this.game.state.currentNight <= 5 && this.currentTrumpConfig) {
+        // Trump出场逻辑
+        if (this.currentTrumpConfig && this.trump.aiLevel > 0) {
             console.log(`Night ${this.game.state.currentNight} - Trump AI Config:`, this.currentTrumpConfig);
             console.log(`Trump will spawn in ${this.currentTrumpConfig.spawnDelay / 1000} seconds...`);
             
@@ -3376,8 +4620,14 @@ class EnemyAI {
             }, this.currentTrumpConfig.spawnDelay);
         }
         
-        // 第3晚及以后，霍金激活（但 Night 6 不激活）
-        if (this.game.state.currentNight >= 3 && this.game.state.currentNight <= 5) {
+        // Hawking激活逻辑
+        // Custom Night: 根据自定义等级决定是否激活
+        if (this.game.state.customNight && this.game.state.customAILevels.hawking > 0) {
+            console.log('Custom Night: Hawking activated at cam6!');
+            this.startHawking();
+        }
+        // 普通夜晚：Night 3-5 激活
+        else if (!this.game.state.customNight && this.game.state.currentNight >= 3 && this.game.state.currentNight <= 5) {
             console.log('Hawking activated at cam6!');
             this.startHawking();
         }
@@ -3387,6 +4637,66 @@ class EnemyAI {
     loadAIConfig() {
         const night = this.game.state.currentNight;
         
+        // Custom Night (Night 7) - 使用自定义AI等级
+        if (this.game.state.customNight && night === 7) {
+            const customLevels = this.game.state.customAILevels;
+            
+            // Epstein 自定义配置
+            this.currentEpsteinConfig = {
+                aiLevel: customLevels.epstein,
+                movementInterval: [9000, 10000],
+                movementDuration: 1000,
+                spawnDelay: 0,
+                movementProbability: {
+                    forward: 0.9,
+                    lateral: 0.1,
+                    backward: 0.0
+                },
+                soundLureResistance: 0.15
+            };
+            this.epstein.aiLevel = customLevels.epstein;
+            this.epstein.movementInterval = this.getRandomInterval(this.currentEpsteinConfig.movementInterval);
+            
+            // Trump 自定义配置
+            if (customLevels.trump > 0) {
+                this.currentTrumpConfig = {
+                    aiLevel: customLevels.trump,
+                    movementInterval: [8000, 9000],
+                    movementDuration: 1000,
+                    spawnDelay: 0,
+                    movementProbability: {
+                        forward: 0.8,
+                        lateral: 0.2,
+                        backward: 0.0
+                    },
+                    ventCrawling: {
+                        cam1Probability: 1.0,
+                        cam2Probability: 0.5,
+                        soundDelay: 5000,
+                        soundDuration: 10000,
+                        totalDuration: 20000,
+                        retreatDelay: 2000,
+                        retreatSoundDuration: 3000
+                    }
+                };
+                this.trump.aiLevel = customLevels.trump;
+                this.trump.movementInterval = this.getRandomInterval(this.currentTrumpConfig.movementInterval);
+            } else {
+                this.currentTrumpConfig = null;
+            }
+            
+            // Hawking 自定义配置（通过 customAILevels.hawking 控制）
+            // Hawking 的 AI 等级不影响移动，只影响是否激活
+            
+            console.log(`Custom Night AI Config loaded:`);
+            console.log(`- Epstein: Level ${this.epstein.aiLevel}`);
+            console.log(`- Trump: Level ${this.trump.aiLevel || 0}`);
+            console.log(`- Hawking: Level ${customLevels.hawking}`);
+            
+            return;
+        }
+        
+        // 普通夜晚配置
         // 加载Epstein配置
         this.currentEpsteinConfig = this.epsteinConfig[night] || this.epsteinConfig[1];
         this.epstein.aiLevel = this.currentEpsteinConfig.aiLevel;
@@ -3868,6 +5178,39 @@ class EnemyAI {
     startTrumpCrawling(fromLocation) {
         const config = this.currentTrumpConfig.ventCrawling;
         
+        // 检查通风管是否已经关闭
+        if (this.game.state.ventsClosed) {
+            console.log('Trump tried to crawl but vents are already closed! Silent retreat.');
+            
+            // 静默撤退 - 不播放任何音效
+            // 找出所有步长为3的位置
+            const depth3Locations = Object.keys(this.trumpLocationDepth).filter(loc => 
+                this.trumpLocationDepth[loc] === 3 && loc !== 'office'
+            );
+            
+            // 如果没有步长为3的位置，使用EP的步长3位置
+            let retreatLocation;
+            if (depth3Locations.length > 0) {
+                retreatLocation = depth3Locations[Math.floor(Math.random() * depth3Locations.length)];
+            } else {
+                const epDepth3Locations = Object.keys(this.locationDepth).filter(loc => 
+                    this.locationDepth[loc] === 3 && loc !== 'office'
+                );
+                retreatLocation = epDepth3Locations[Math.floor(Math.random() * epDepth3Locations.length)];
+            }
+            
+            console.log(`Trump silently retreats to ${retreatLocation} (depth 3)`);
+            
+            // 直接移动到撤退位置，不播放音效
+            this.trump.currentLocation = retreatLocation;
+            this.trump.isCrawling = false;
+            this.trump.crawlingFrom = null;
+            
+            // 更新摄像头显示
+            this.updateCameraDisplay();
+            return;
+        }
+        
         this.trump.isCrawling = true;
         this.trump.crawlingFrom = fromLocation; // 记录从哪里开始爬行
         this.trump.currentLocation = 'crawling'; // 标记为爬行状态
@@ -3883,7 +5226,7 @@ class EnemyAI {
             // 检查Trump是否还在爬行（可能已经被阻止）
             if (this.trump.isCrawling && this.trump.currentLocation === 'crawling') {
                 console.log('Playing crawling sound...');
-                this.game.assets.playSound('ventCrawling', true, 0.8);
+                this.game.assets.playSound('ventCrawling', true, 1.0);
                 
                 // 根据配置持续时长后停止爬行音效
                 setTimeout(() => {
@@ -3962,7 +5305,7 @@ class EnemyAI {
         // 根据配置延迟后播放撤退音效
         setTimeout(() => {
             console.log('Playing retreat crawling sound...');
-            this.game.assets.playSound('ventCrawling', false, 0.8);
+            this.game.assets.playSound('ventCrawling', false, 1.0);
             
             // 根据配置持续时长后停止音效
             setTimeout(() => {
@@ -4263,10 +5606,35 @@ class EnemyAI {
         this.hawking.warningLevel = 0;
         console.log('Hawking started at cam6');
         
-        // 20秒后开始黄色警告
+        // 根据AI等级计算警告时间
+        // AI等级越高，警告时间越短（更难）
+        // AI 1-5: 30秒 → 黄色
+        // AI 6-10: 25秒 → 黄色
+        // AI 11-15: 20秒 → 黄色
+        // AI 16-20: 15秒 → 黄色
+        let initialWarningTime = 30000; // 默认30秒
+        
+        if (this.game.state.customNight && this.game.state.currentNight === 7) {
+            const hawkingLevel = this.game.state.customAILevels.hawking;
+            if (hawkingLevel >= 16) {
+                initialWarningTime = 15000; // 15秒
+            } else if (hawkingLevel >= 11) {
+                initialWarningTime = 20000; // 20秒
+            } else if (hawkingLevel >= 6) {
+                initialWarningTime = 25000; // 25秒
+            } else {
+                initialWarningTime = 30000; // 30秒
+            }
+            console.log(`Hawking AI Level ${hawkingLevel}: Initial warning in ${initialWarningTime/1000}s`);
+        } else {
+            // 普通夜晚使用默认20秒
+            initialWarningTime = 20000;
+        }
+        
+        // X秒后开始黄色警告
         this.hawking.timer = setTimeout(() => {
             this.showHawkingWarning('yellow');
-        }, 20000);
+        }, initialWarningTime);
     }
     
     // 显示霍金警告
@@ -4275,22 +5643,44 @@ class EnemyAI {
         
         console.log(`Hawking warning: ${level}`);
         
+        // 根据AI等级计算警告升级时间
+        // AI等级越高，警告升级越快（更难）
+        let yellowToRedTime = 5000; // 默认5秒
+        let redToBreakTime = 5000;  // 默认5秒
+        
+        if (this.game.state.customNight && this.game.state.currentNight === 7) {
+            const hawkingLevel = this.game.state.customAILevels.hawking;
+            if (hawkingLevel >= 16) {
+                yellowToRedTime = 3000; // 3秒
+                redToBreakTime = 3000;  // 3秒
+            } else if (hawkingLevel >= 11) {
+                yellowToRedTime = 4000; // 4秒
+                redToBreakTime = 4000;  // 4秒
+            } else if (hawkingLevel >= 6) {
+                yellowToRedTime = 5000; // 5秒
+                redToBreakTime = 5000;  // 5秒
+            } else {
+                yellowToRedTime = 6000; // 6秒
+                redToBreakTime = 6000;  // 6秒
+            }
+        }
+        
         if (level === 'yellow') {
             this.hawking.warningLevel = 1;
             this.updateHawkingWarningDisplay();
             
-            // 5秒后升级为红色警告
+            // X秒后升级为红色警告
             this.hawking.warningTimer = setTimeout(() => {
                 this.showHawkingWarning('red');
-            }, 5000);
+            }, yellowToRedTime);
         } else if (level === 'red') {
             this.hawking.warningLevel = 2;
             this.updateHawkingWarningDisplay();
             
-            // 5秒后摄像头坏掉
+            // X秒后摄像头坏掉
             this.hawking.warningTimer = setTimeout(() => {
                 this.hawkingBreakCamera();
-            }, 5000);
+            }, redToBreakTime);
         }
     }
     
@@ -4353,9 +5743,9 @@ class EnemyAI {
         
         // 设置警告图片
         if (this.hawking.warningLevel === 1) {
-            warningIcon.src = '/FNAE-HTML5-1.1.5/assets/images/Warninglight.png';
+            warningIcon.src = 'assets/images/Warninglight.png';
         } else if (this.hawking.warningLevel === 2) {
-            warningIcon.src = '/FNAE-HTML5-1.1.5/assets/images/Warningheavy.png';
+            warningIcon.src = 'assets/images/Warningheavy.png';
         }
     }
     
@@ -4420,7 +5810,7 @@ class EnemyAI {
         
         // 创建霍金图片（在房间里）
         const hawkingImg = document.createElement('img');
-        hawkingImg.src = '/FNAE-HTML5-1.1.5/assets/images/mrstephen.png';
+        hawkingImg.src = 'assets/images/mrstephen.png';
         hawkingImg.style.position = 'absolute';
         hawkingImg.style.left = '43.6%';
         hawkingImg.style.bottom = '27.4%';
@@ -4431,7 +5821,7 @@ class EnemyAI {
         
         // 创建导弹图片（从霍金位置飞向玩家）
         const missileImg = document.createElement('img');
-        missileImg.src = '/FNAE-HTML5-1.1.5/assets/images/front.png';
+        missileImg.src = 'assets/images/front.png';
         missileImg.style.position = 'absolute';
         missileImg.style.left = '25%';
         missileImg.style.top = '40%';
@@ -4449,7 +5839,7 @@ class EnemyAI {
         explosionImg.style.width = '50vw'; // 容器宽度
         explosionImg.style.height = '50vh'; // 容器高度
         explosionImg.style.zIndex = '4';
-        explosionImg.style.backgroundImage = 'url(/FNAE-HTML5-1.1.5/assets/images/exp2.png)';
+        explosionImg.style.backgroundImage = 'url(assets/images/exp2.png)';
         explosionImg.style.backgroundSize = '400% auto'; // 4列，高度自适应
         explosionImg.style.backgroundRepeat = 'no-repeat';
         explosionImg.style.backgroundPosition = '0% 0%';
@@ -4538,16 +5928,439 @@ class EnemyAI {
         // 播放电击音效
         this.game.assets.playSound('hawking_shock', false, 0.8);
         
-        // 20秒后重新开始警告
+        // 根据AI等级计算重置后的警告时间
+        let resetWarningTime = 20000; // 默认20秒
+        
+        if (this.game.state.customNight && this.game.state.currentNight === 7) {
+            const hawkingLevel = this.game.state.customAILevels.hawking;
+            if (hawkingLevel >= 16) {
+                resetWarningTime = 15000; // 15秒
+            } else if (hawkingLevel >= 11) {
+                resetWarningTime = 20000; // 20秒
+            } else if (hawkingLevel >= 6) {
+                resetWarningTime = 25000; // 25秒
+            } else {
+                resetWarningTime = 30000; // 30秒
+            }
+        }
+        
+        // X秒后重新开始警告
         this.hawking.timer = setTimeout(() => {
             this.showHawkingWarning('yellow');
-        }, 20000);
+        }, resetWarningTime);
         
         return true;
     }
 }
 
+</script>
 
+<script>
+/* js/InputHandler.js */
+// Input handler
+class InputHandler {
+    constructor(game) {
+        this.game = game;
+        this.touchStartX = 0;
+        this.touchStartY = 0;
+        this.isTouching = false;
+        this.bindEvents();
+    }
+
+    bindEvents() {
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => this.handleKeyPress(e));
+        
+        // Mouse movement view control - edge trigger
+        const gameScreen = document.getElementById('game-screen');
+        gameScreen.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+        
+        // Touch controls for mobile
+        gameScreen.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: false });
+        gameScreen.addEventListener('touchmove', (e) => this.handleTouchMove(e), { passive: false });
+        gameScreen.addEventListener('touchend', (e) => this.handleTouchEnd(e), { passive: false });
+    }
+
+    handleKeyPress(e) {
+        // ==================== 作弊键（生产环境请注释掉） ====================
+        
+        /* // F6 作弊键：立即触发特朗普进入管道（测试音效用）
+        if (e.key === 'F6') {
+            e.preventDefault();
+            if (this.game.state.isGameRunning && this.game.enemyAI.trump.hasSpawned) {
+                console.log('🎮 CHEAT: Forcing Trump to crawl into vents...');
+                this.showCheatNotification('Trump entering vents NOW!');
+                
+                // 强制特朗普从 cam1 开始爬行
+                this.game.enemyAI.trump.currentLocation = 'cam1';
+                
+                // 立即播放音效（不等待延迟）- 音量改为1.0（最大值）
+                console.log('Playing crawling sound immediately...');
+                this.game.assets.playSound('ventCrawling', true, 1.0);
+                
+                // 10秒后停止音效
+                setTimeout(() => {
+                    console.log('Stopping crawling sound...');
+                    this.game.assets.stopSound('ventCrawling');
+                }, 10000);
+            } else if (this.game.state.isGameRunning) {
+                this.showCheatNotification('Trump not spawned yet!');
+            }
+            return;
+        }
+        
+        // F9 作弊键：跳过当前夜晚（调试用）
+        if (e.key === 'F9') {
+            e.preventDefault();
+            if (this.game.state.isGameRunning) {
+                console.log('🎮 CHEAT: Skipping current night...');
+                
+                // 显示作弊提示
+                this.showCheatNotification('Skipping Night ' + this.game.state.currentNight);
+                
+                // 延迟执行，让玩家看到提示
+                setTimeout(() => {
+                    this.game.winNight();
+                }, 500);
+            }
+            return;
+        }
+        
+        // F10 作弊键：解锁特殊夜晚（调试用）
+        if (e.key === 'F10') {
+            e.preventDefault();
+            console.log('🎮 CHEAT: Unlocking Special Night...');
+            localStorage.setItem('night6Unlocked', 'true');
+            this.showCheatNotification('Special Night Unlocked!');
+            
+            // 如果在主菜单，立即更新按钮显示
+            if (this.game.mainMenu && !this.game.mainMenu.classList.contains('hidden')) {
+                this.game.updateContinueButton();
+            }
+            return;
+        }
+        
+        // F8 作弊键：解锁Custom Night（调试用）
+        if (e.key === 'F8') {
+            e.preventDefault();
+            console.log('🎮 CHEAT: Unlocking Custom Night...');
+            localStorage.setItem('night6Completed', 'true');
+            this.showCheatNotification('Custom Night Unlocked!');
+            
+            // 如果在主菜单，立即更新按钮显示
+            if (this.game.mainMenu && !this.game.mainMenu.classList.contains('hidden')) {
+                this.game.updateContinueButton();
+            }
+            return;
+        }
+        
+        // F7 作弊键：时间加速（测试用）
+        if (e.key === 'F7') {
+            e.preventDefault();
+            if (this.game.state.isGameRunning) {
+                this.game.state.currentTime += 1;
+                this.game.ui.update();
+                this.showCheatNotification(`Time: ${this.game.state.currentTime} AM`);
+                
+                if (this.game.state.currentTime >= 6) {
+                    this.game.winNight();
+                }
+            }
+            return;
+        }
+        
+        // 数字键1-6：快速跳到对应关卡（测试用，仅在主菜单有效）
+        if (e.key >= '1' && e.key <= '6') {
+            if (this.game.mainMenu && !this.game.mainMenu.classList.contains('hidden')) {
+                e.preventDefault();
+                const night = parseInt(e.key);
+                console.log(`🎮 CHEAT: Jumping to Night ${night}...`);
+                this.game.state.currentNight = night;
+                this.showCheatNotification(`Starting Night ${night}`);
+                
+                // 如果是Night 6，需要先解锁
+                if (night === 6) {
+                    localStorage.setItem('night6Unlocked', 'true');
+                    setTimeout(() => this.game.startSpecialNight(), 500);
+                } else {
+                    setTimeout(() => this.game.initGame(), 500);
+                }
+                
+                this.game.mainMenu.classList.add('hidden');
+                const menuMusic = document.getElementById('menu-music');
+                if (menuMusic) {
+                    menuMusic.pause();
+                    menuMusic.currentTime = 0;
+                }
+            }
+            return;
+        } */
+        
+        // ==================== 作弊键结束 ====================
+        
+        if (!this.game.state.isGameRunning) return;
+        
+        switch(e.key.toLowerCase()) {
+            case 'v': 
+                this.game.toggleVents(); 
+                break;
+            case ' ': 
+                e.preventDefault();
+                this.game.toggleCamera();
+                break;
+        }
+    }
+    
+    // 作弊通知
+    showCheatNotification(message) {
+        // 创建通知元素
+        const notification = document.createElement('div');
+        notification.style.position = 'fixed';
+        notification.style.top = '10px';
+        notification.style.left = '50%';
+        notification.style.transform = 'translateX(-50%)';
+        notification.style.background = 'rgba(255, 215, 0, 0.9)';
+        notification.style.color = '#000';
+        notification.style.padding = '10px 20px';
+        notification.style.fontSize = '20px';
+        notification.style.fontWeight = 'bold';
+        notification.style.fontFamily = 'Arial, sans-serif';
+        notification.style.borderRadius = '5px';
+        notification.style.zIndex = '99999';
+        notification.style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.8)';
+        notification.textContent = '🎮 CHEAT: ' + message;
+        
+        document.body.appendChild(notification);
+        
+        // 1秒后移除
+        setTimeout(() => {
+            notification.remove();
+        }, 1000);
+    }
+
+    handleMouseMove(e) {
+        if (!this.game.state.isGameRunning || this.game.state.cameraOpen) return;
+        
+        const edgeThreshold = 100;
+        const mouseX = e.clientX;
+        const screenWidth = window.innerWidth;
+        
+        // Check if at left edge
+        if (mouseX < edgeThreshold) {
+            this.game.isRotatingLeft = true;
+            this.game.isRotatingRight = false;
+        }
+        // Check if at right edge
+        else if (mouseX > screenWidth - edgeThreshold) {
+            this.game.isRotatingRight = true;
+            this.game.isRotatingLeft = false;
+        }
+        // In middle area, stop rotation
+        else {
+            this.game.isRotatingLeft = false;
+            this.game.isRotatingRight = false;
+        }
+    }
+    
+    handleTouchStart(e) {
+        if (!this.game.state.isGameRunning || this.game.state.cameraOpen) return;
+        
+        // Don't prevent default if touching UI elements
+        const target = e.target;
+        if (target.closest('.hotspot') || target.closest('.control-panel-button') || 
+            target.closest('.camera-button') || target.closest('#control-panel-popup')) {
+            return;
+        }
+        
+        e.preventDefault();
+        
+        const touch = e.touches[0];
+        this.touchStartX = touch.clientX;
+        this.touchStartY = touch.clientY;
+        this.isTouching = true;
+    }
+    
+    handleTouchMove(e) {
+        if (!this.game.state.isGameRunning || this.game.state.cameraOpen || !this.isTouching) return;
+        
+        // Don't prevent default if touching UI elements
+        const target = e.target;
+        if (target.closest('.hotspot') || target.closest('.control-panel-button') || 
+            target.closest('.camera-button') || target.closest('#control-panel-popup')) {
+            return;
+        }
+        
+        e.preventDefault();
+        
+        const touch = e.touches[0];
+        const deltaX = touch.clientX - this.touchStartX;
+        const deltaY = Math.abs(touch.clientY - this.touchStartY);
+        
+        // Only rotate if horizontal swipe (not vertical)
+        if (deltaY < 50) {
+            const sensitivity = 0.002;
+            // Reverse the direction: swipe right = view right, swipe left = view left
+            const movement = -deltaX * sensitivity;
+            
+            // Update view position directly
+            this.game.viewPosition += movement;
+            this.game.viewPosition = Math.max(0, Math.min(1, this.game.viewPosition));
+            this.game.ui.updateViewPosition(this.game.viewPosition);
+            
+            // Update touch start position for smooth continuous movement
+            this.touchStartX = touch.clientX;
+            this.touchStartY = touch.clientY;
+        }
+    }
+    
+    handleTouchEnd(e) {
+        if (!this.game.state.isGameRunning) return;
+        
+        this.isTouching = false;
+        this.game.isRotatingLeft = false;
+        this.game.isRotatingRight = false;
+    }
+}
+
+</script>
+
+<script>
+/* js/StaticNoise.js */
+// 静态噪点效果
+class StaticNoise {
+    constructor() {
+        this.canvas = document.getElementById('static-canvas');
+        if (!this.canvas) {
+            console.error('Static canvas not found');
+            return;
+        }
+        
+        this.ctx = this.canvas.getContext('2d');
+        this.isRunning = false;
+        this.animationId = null;
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
+    }
+
+    resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+    }
+
+    start() {
+        if (this.isRunning) return;
+        this.isRunning = true;
+        this.canvas.style.display = 'block';
+        this.animate();
+    }
+
+    stop() {
+        this.isRunning = false;
+        this.canvas.style.display = 'none';
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+        }
+    }
+
+    animate() {
+        if (!this.ctx || !this.isRunning) return;
+        
+        const width = this.canvas.width;
+        const height = this.canvas.height;
+        const imageData = this.ctx.createImageData(width, height);
+        const data = imageData.data;
+
+        // 生成更强烈的随机噪点（电视雪花效果）
+        for (let i = 0; i < data.length; i += 4) {
+            const value = Math.random() > 0.5 ? 255 : 0;
+            data[i] = value;
+            data[i + 1] = value;
+            data[i + 2] = value;
+            data[i + 3] = Math.random() * 255;
+        }
+
+        this.ctx.putImageData(imageData, 0, 0);
+        this.animationId = requestAnimationFrame(() => this.animate());
+    }
+}
+
+</script>
+
+<script>
+/* js/ScaryFaceFlicker.js */
+// 恐怖脸闪烁效果
+const getBasePath = () => {
+    const currentPath = window.location.pathname;
+    if (currentPath.includes('/FNAE-HTML5-1.2.2-fix/')) {
+        return '/FNAE-HTML5-1.2.2-fix/';
+    }
+    return './';
+};
+
+const basePath = getBasePath();
+const normalBackground = `${basePath}assets/images/menubackground.png`;
+const scaryBackgrounds = [
+    `${basePath}assets/images/scaryhawk.png`,
+    `${basePath}assets/images/scaryep.png`,
+    `${basePath}assets/images/scarytrump.png`
+];
+
+let scaryFaceInterval = null;
+const preloadedImages = {};
+
+// 预加载所有背景图片
+function preloadBackgrounds() {
+    const normalImg = new Image();
+    normalImg.src = normalBackground;
+    preloadedImages['normal'] = normalImg;
+    
+    scaryBackgrounds.forEach((bg, index) => {
+        const img = new Image();
+        img.src = bg;
+        preloadedImages[`scary-${index}`] = img;
+    });
+}
+
+function startScaryFaceFlicker() {
+    if (scaryFaceInterval) {
+        stopScaryFaceFlicker();
+    }
+    
+    const mainMenu = document.getElementById('main-menu');
+    if (!mainMenu) return;
+    
+    scaryFaceInterval = setInterval(() => {
+        if (Math.random() < 0.1) {
+            const bgIndex = Math.floor(Math.random() * 3);
+            const scaryBg = scaryBackgrounds[bgIndex];
+            
+            mainMenu.style.backgroundImage = `url('${scaryBg}')`;
+            
+            const hideDelay = 50 + Math.random() * 150;
+            setTimeout(() => {
+                mainMenu.style.backgroundImage = `url('${normalBackground}')`;
+            }, hideDelay);
+        }
+    }, 100);
+}
+
+function stopScaryFaceFlicker() {
+    if (scaryFaceInterval) {
+        clearInterval(scaryFaceInterval);
+        scaryFaceInterval = null;
+        
+        const mainMenu = document.getElementById('main-menu');
+        if (mainMenu) {
+            mainMenu.style.backgroundImage = `url('${normalBackground}')`;
+        }
+    }
+}
+
+</script>
+
+<script>
+/* js/Game.js */
 // Main game class
 class Game {
     constructor() {
@@ -4583,19 +6396,177 @@ class Game {
         this.startBtn = document.getElementById('start-game');
         this.continueBtn = document.getElementById('continue-game');
         this.specialNightBtn = document.getElementById('special-night-btn');
+        this.customNightBtn = document.getElementById('custom-night-btn');
         this.starIcon = document.getElementById('star-icon');
         this.starIcon2 = document.getElementById('star-icon-2');
+        this.starIcon3 = document.getElementById('star-icon-3');
         this.restartBtn = document.getElementById('restart');
         this.mainMenuBtn = document.getElementById('main-menu-btn');
+        
+        // 音量控制元素
+        this.volumeBtn = document.getElementById('volume-btn');
+        this.volumePanel = document.getElementById('volume-panel');
+        this.closeVolumePanelBtn = document.getElementById('close-volume-panel');
+        this.gameBgVolumeSlider = document.getElementById('game-bg-volume');
+        this.menuMusicVolumeSlider = document.getElementById('menu-music-volume');
+        this.jumpscareVolumeSlider = document.getElementById('jumpscare-volume');
+        this.ventCrawlingVolumeSlider = document.getElementById('vent-crawling-volume');
+        this.masterVolumeSlider = document.getElementById('master-volume');
+        
+        // 调试：检查元素是否找到
+        if (!this.volumeBtn) console.error('Volume button not found!');
+        if (!this.volumePanel) console.error('Volume panel not found!');
+        
+        // Custom Night 元素
+        this.customNightMenu = document.getElementById('custom-night-menu');
+        this.epsteinSlider = document.getElementById('epstein-slider');
+        this.trumpSlider = document.getElementById('trump-slider');
+        this.hawkingSlider = document.getElementById('hawking-slider');
+        this.epsteinValue = document.getElementById('epstein-value');
+        this.trumpValue = document.getElementById('trump-value');
+        this.hawkingValue = document.getElementById('hawking-value');
+        this.startCustomNightBtn = document.getElementById('start-custom-night');
+        this.backToMenuBtn = document.getElementById('back-to-menu');
+        
+        // 初始化音量设置
+        this.initVolumeSettings();
+    }
+    
+    initVolumeSettings() {
+        const volumes = this.assets.getAllVolumes();
+        this.gameBgVolumeSlider.value = Math.round(volumes.gameBg * 100);
+        this.menuMusicVolumeSlider.value = Math.round(volumes.menuMusic * 100);
+        this.jumpscareVolumeSlider.value = Math.round(volumes.jumpscare * 100);
+        this.ventCrawlingVolumeSlider.value = Math.round(volumes.ventCrawling * 100);
+        this.masterVolumeSlider.value = Math.round(volumes.master * 100);
+        
+        // 更新百分比显示
+        this.updateVolumePercents();
+    }
+    
+    updateVolumePercents() {
+        const sliders = [
+            this.gameBgVolumeSlider,
+            this.menuMusicVolumeSlider,
+            this.jumpscareVolumeSlider,
+            this.ventCrawlingVolumeSlider,
+            this.masterVolumeSlider
+        ];
+        
+        sliders.forEach(slider => {
+            const percent = slider.parentElement.querySelector('.volume-percent');
+            if (percent) {
+                percent.textContent = slider.value + '%';
+            }
+        });
     }
 
     bindEvents() {
         this.startBtn.addEventListener('click', () => this.startGame());
         this.continueBtn.addEventListener('click', () => this.continueGame());
         this.specialNightBtn.addEventListener('click', () => this.startSpecialNight());
+        this.customNightBtn.addEventListener('click', () => this.showCustomNightMenu());
         this.restartBtn.addEventListener('click', () => this.restartGame());
+        
+        // 音量面板事件
+        this.volumeBtn.addEventListener('click', () => {
+            this.volumePanel.classList.toggle('hidden');
+        });
+        
+        this.closeVolumePanelBtn.addEventListener('click', () => {
+            this.volumePanel.classList.add('hidden');
+        });
+        
+        // 音量滑块事件
+        this.gameBgVolumeSlider.addEventListener('input', (e) => {
+            this.assets.setVolume('gameBg', parseInt(e.target.value) / 100);
+            this.updateVolumePercents();
+            // 立即更新游戏中的背景音效
+            if (this.state.isGameRunning) {
+                const ventsSound = this.assets.sounds['vents'];
+                if (ventsSound && !ventsSound.paused) {
+                    const volumes = this.assets.getAllVolumes();
+                    ventsSound.volume = volumes.gameBg * volumes.master;
+                }
+            }
+        });
+        
+        this.menuMusicVolumeSlider.addEventListener('input', (e) => {
+            this.assets.setVolume('menuMusic', parseInt(e.target.value) / 100);
+            this.updateVolumePercents();
+            // 立即更新主菜单音乐音量
+            const menuMusic = document.getElementById('menu-music');
+            if (menuMusic && !menuMusic.paused) {
+                const volumes = this.assets.getAllVolumes();
+                menuMusic.volume = volumes.menuMusic * volumes.master;
+            }
+        });
+        
+        this.jumpscareVolumeSlider.addEventListener('input', (e) => {
+            this.assets.setVolume('jumpscare', parseInt(e.target.value) / 100);
+            this.updateVolumePercents();
+        });
+        
+        this.ventCrawlingVolumeSlider.addEventListener('input', (e) => {
+            this.assets.setVolume('ventCrawling', parseInt(e.target.value) / 100);
+            this.updateVolumePercents();
+        });
+        
+        this.masterVolumeSlider.addEventListener('input', (e) => {
+            this.assets.setVolume('master', parseInt(e.target.value) / 100);
+            this.updateVolumePercents();
+            // 立即更新所有正在播放的音效
+            const menuMusic = document.getElementById('menu-music');
+            if (menuMusic && !menuMusic.paused) {
+                const volumes = this.assets.getAllVolumes();
+                menuMusic.volume = volumes.menuMusic * volumes.master;
+            }
+            if (this.state.isGameRunning) {
+                const ventsSound = this.assets.sounds['vents'];
+                if (ventsSound && !ventsSound.paused) {
+                    const volumes = this.assets.getAllVolumes();
+                    ventsSound.volume = volumes.gameBg * volumes.master;
+                }
+            }
+        });
         this.mainMenuBtn.addEventListener('click', () => this.showMainMenu());
         this.tutorialGotItBtn.addEventListener('click', () => this.closeTutorial());
+        
+        // Custom Night 事件
+        this.startCustomNightBtn.addEventListener('click', () => this.startCustomNight());
+        this.backToMenuBtn.addEventListener('click', () => this.hideCustomNightMenu());
+        
+        // AI滑块事件
+        this.epsteinSlider.addEventListener('input', (e) => {
+            this.epsteinValue.textContent = e.target.value;
+        });
+        this.trumpSlider.addEventListener('input', (e) => {
+            this.trumpValue.textContent = e.target.value;
+        });
+        this.hawkingSlider.addEventListener('input', (e) => {
+            this.hawkingValue.textContent = e.target.value;
+        });
+        
+        // +/- 按钮事件
+        document.querySelectorAll('.ai-btn-minus').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const aiName = btn.dataset.ai;
+                const slider = document.getElementById(`${aiName}-slider`);
+                const value = Math.max(0, parseInt(slider.value) - 1);
+                slider.value = value;
+                document.getElementById(`${aiName}-value`).textContent = value;
+            });
+        });
+        
+        document.querySelectorAll('.ai-btn-plus').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const aiName = btn.dataset.ai;
+                const slider = document.getElementById(`${aiName}-slider`);
+                const value = Math.min(20, parseInt(slider.value) + 1);
+                slider.value = value;
+                document.getElementById(`${aiName}-value`).textContent = value;
+            });
+        });
     }
     
     // 加载保存的进度
@@ -4646,18 +6617,89 @@ class Game {
         const night6Completed = localStorage.getItem('night6Completed');
         if (night6Completed === 'true') {
             this.starIcon2.classList.remove('hidden');
+            this.customNightBtn.classList.remove('hidden'); // 通关Night 6后解锁Custom Night
         } else {
             this.starIcon2.classList.add('hidden');
+            this.customNightBtn.classList.add('hidden');
+        }
+        
+        // 检查是否通关20/20/20 Custom Night
+        const customNight202020 = localStorage.getItem('customNight202020');
+        if (customNight202020 === 'true') {
+            this.starIcon3.classList.remove('hidden');
+        } else {
+            this.starIcon3.classList.add('hidden');
         }
         
         // 恢复到Night 1（不影响按钮显示）
         this.state.currentNight = 1;
     }
     
+    // 显示Custom Night菜单
+    showCustomNightMenu() {
+        this.mainMenu.classList.add('hidden');
+        this.customNightMenu.classList.remove('hidden');
+    }
+    
+    // 隐藏Custom Night菜单
+    hideCustomNightMenu() {
+        this.customNightMenu.classList.add('hidden');
+        this.mainMenu.classList.remove('hidden');
+    }
+    
+    // 开始Custom Night
+    async startCustomNight() {
+        const epsteinLevel = parseInt(this.epsteinSlider.value);
+        const trumpLevel = parseInt(this.trumpSlider.value);
+        const hawkingLevel = parseInt(this.hawkingSlider.value);
+        
+        // 保存自定义AI等级到state
+        this.state.customNight = true;
+        this.state.currentNight = 7; // Custom Night = Night 7
+        this.state.customAILevels = {
+            epstein: epsteinLevel,
+            trump: trumpLevel,
+            hawking: hawkingLevel
+        };
+        
+        console.log('Starting Custom Night with AI levels:', this.state.customAILevels);
+        
+        this.customNightMenu.classList.add('hidden');
+        
+        // 隐藏音量按钮和面板
+        if (this.volumeBtn) {
+            this.volumeBtn.classList.add('hidden');
+        }
+        if (this.volumePanel) {
+            this.volumePanel.classList.add('hidden');
+        }
+        
+        const menuMusic = document.getElementById('menu-music');
+        if (menuMusic) {
+            menuMusic.pause();
+            menuMusic.currentTime = 0;
+            menuMusic.loop = false;
+        }
+        
+        // 重置敌人AI状态
+        this.enemyAI.reset();
+        
+        // 直接开始游戏
+        await this.initGame();
+    }
+    
     // Continue游戏（从保存的关卡开始）
     async continueGame() {
         if (this.loadProgress()) {
             this.mainMenu.classList.add('hidden');
+            
+            // 隐藏音量按钮和面板
+            if (this.volumeBtn) {
+                this.volumeBtn.classList.add('hidden');
+            }
+            if (this.volumePanel) {
+                this.volumePanel.classList.add('hidden');
+            }
             
             const menuMusic = document.getElementById('menu-music');
             if (menuMusic) {
@@ -4681,6 +6723,14 @@ class Game {
         
         this.mainMenu.classList.add('hidden');
         
+        // 隐藏音量按钮和面板
+        if (this.volumeBtn) {
+            this.volumeBtn.classList.add('hidden');
+        }
+        if (this.volumePanel) {
+            this.volumePanel.classList.add('hidden');
+        }
+        
         const menuMusic = document.getElementById('menu-music');
         if (menuMusic) {
             menuMusic.pause();
@@ -4701,6 +6751,14 @@ class Game {
         this.clearProgress(); // 清除之前的进度
         
         this.mainMenu.classList.add('hidden');
+        
+        // 隐藏音量按钮和面板
+        if (this.volumeBtn) {
+            this.volumeBtn.classList.add('hidden');
+        }
+        if (this.volumePanel) {
+            this.volumePanel.classList.add('hidden');
+        }
         
         const menuMusic = document.getElementById('menu-music');
         if (menuMusic) {
@@ -4922,7 +6980,7 @@ class Game {
         
         // 创建金色霍金图片
         const goldenImg = document.createElement('img');
-        goldenImg.src = '/FNAE-HTML5-1.1.5/assets/images/goldenstephen.png';
+        goldenImg.src = 'assets/images/goldenstephen.png';
         goldenImg.style.position = 'absolute';
         goldenImg.style.top = '50%';
         goldenImg.style.left = '50%';
@@ -4951,7 +7009,11 @@ class Game {
             const nightIntroText = document.getElementById('night-intro-text');
             
             // Update night number text
-            nightIntroText.textContent = `NIGHT ${this.state.currentNight}`;
+            if (this.state.customNight && this.state.currentNight === 7) {
+                nightIntroText.textContent = 'CUSTOM NIGHT';
+            } else {
+                nightIntroText.textContent = `NIGHT ${this.state.currentNight}`;
+            }
             
             // Show scene
             nightIntro.classList.remove('hidden');
@@ -4975,6 +7037,7 @@ class Game {
             }, 3500); // 1500ms fade in + 2000ms display
         });
     }
+
     
     startViewRotation() {
         const rotationLoop = () => {
@@ -5198,6 +7261,15 @@ class Game {
         // 立即隐藏游戏画面，防止闪烁
         this.gameScreen.classList.remove('active');
         
+        // 检查是否通关20/20/20 Custom Night
+        if (this.state.customNight && this.state.currentNight === 7) {
+            const levels = this.state.customAILevels;
+            if (levels.epstein === 20 && levels.trump === 20 && levels.hawking === 20) {
+                console.log('🌟 20/20/20 Custom Night completed!');
+                localStorage.setItem('customNight202020', 'true');
+            }
+        }
+        
         // 如果是 Night 6，播放特殊的胜利动画并标记完成
         if (this.state.currentNight === 6) {
             localStorage.setItem('night6Completed', 'true');
@@ -5287,7 +7359,7 @@ class Game {
                         
                         // 创建胜利画面
                         const winScreen = document.createElement('img');
-                        winScreen.src = '/FNAE-HTML5-1.1.5/assets/images/winscreen.png';
+                        winScreen.src = 'assets/images/winscreen.png';
                         winScreen.style.width = '100%';
                         winScreen.style.height = '100%';
                         winScreen.style.objectFit = 'contain';
@@ -5375,7 +7447,7 @@ class Game {
                 
                 // 创建night6.png图片
                 const night6Image = document.createElement('img');
-                night6Image.src = '/FNAE-HTML5-1.1.5/assets/images/night6.png';
+                night6Image.src = 'assets/images/night6.png';
                 night6Image.style.width = '100%';
                 night6Image.style.height = '100%';
                 night6Image.style.objectFit = 'contain';
@@ -5453,8 +7525,14 @@ class Game {
             timeDisplay.style.opacity = '0';
             
             setTimeout(() => {
+                // Custom Night 通关显示
+                if (this.state.customNight && this.state.currentNight === 7) {
+                    timeDisplay.textContent = 'CUSTOM NIGHT COMPLETE';
+                    timeDisplay.style.fontSize = '5vw';
+                    timeDisplay.style.color = '#0f0'; // 绿色表示完成
+                }
                 // 如果还有下一关，显示剩余天数（故事设定是5晚，所以总是显示5-当前关卡）
-                if (this.state.currentNight < this.state.maxNights) {
+                else if (this.state.currentNight < this.state.maxNights) {
                     const daysRemaining = 5 - this.state.currentNight; // 固定按5晚计算
                     timeDisplay.textContent = `${daysRemaining} ${daysRemaining === 1 ? 'day' : 'days'} until rescue`;
                     timeDisplay.style.fontSize = '5vw';
@@ -5475,8 +7553,12 @@ class Game {
                 setTimeout(() => {
                     document.body.removeChild(animationContainer);
                     
+                    // Custom Night 通关后返回主菜单
+                    if (this.state.customNight && this.state.currentNight === 7) {
+                        this.showMainMenu();
+                    }
                     // 如果还有下一关，直接进入下一关
-                    if (this.state.currentNight < this.state.maxNights) {
+                    else if (this.state.currentNight < this.state.maxNights) {
                         this.state.currentNight++;
                         this.continueToNextNight();
                     } else {
@@ -5485,7 +7567,7 @@ class Game {
                         this.showMainMenu();
                     }
                 }, 500);
-            }, 3000); // 改为3秒，让玩家有时间看TO BE CONTINUED
+            }, 3000); // 改为3秒，让玩家有时间看消息
         }, 3000);
     }
 
@@ -5628,12 +7710,23 @@ class Game {
         this.gameOverElement.classList.add('hidden');
         // Hide game screen, prepare to restart
         this.gameScreen.classList.remove('active');
-        this.startGame();
+        
+        // 如果是Custom Night，重新开始Custom Night
+        if (this.state.customNight && this.state.currentNight === 7) {
+            this.startCustomNight();
+        } else {
+            this.startGame();
+        }
     }
 
     showMainMenu() {
         this.gameOverElement.classList.add('hidden');
         this.gameScreen.classList.remove('active');
+        
+        // 显示音量按钮
+        if (this.volumeBtn) {
+            this.volumeBtn.classList.remove('hidden');
+        }
         
         // 关闭摄像头面板
         if (this.state.cameraOpen) {
@@ -5679,271 +7772,10 @@ class Game {
     }
 }
 
+</script>
 
-// 游戏状态管理
-class GameState {
-    constructor() {
-        this.currentNight = 1;
-        this.maxNights = 5; // 当前版本有5晚（Night 1-5），Night 6 是特殊关卡
-        this.currentTime = 0; // 0-6 (12AM-6AM)
-        this.oxygen = 100; // 氧气替代电量
-        this.isGameRunning = false;
-        this.tutorialActive = false; // 教程是否激活
-        this.currentScene = 'office';
-        this.cameraOpen = false;
-        this.ventsClosed = false; // 通风口状态
-        this.ventsToggling = false; // 通风口是否正在切换
-        this.currentCam = 'cam11'; // 当前摄像头
-        this.cameraFailed = false; // 摄像头是否故障
-        this.cameraRestarting = false; // 摄像头是否正在重启
-        this.controlPanelBusy = false; // 控制面板是否正在处理操作
-    }
-
-    reset() {
-        this.currentTime = 0;
-        this.oxygen = 100;
-        this.isGameRunning = true;
-        this.tutorialActive = false;
-        this.currentScene = 'office';
-        this.cameraOpen = false;
-        this.ventsClosed = false;
-        this.ventsToggling = false;
-        this.currentCam = 'cam11';
-        this.cameraFailed = false;
-        this.cameraRestarting = false;
-        this.controlPanelBusy = false;
-    }
-}
-
-
-// Input handler
-class InputHandler {
-    constructor(game) {
-        this.game = game;
-        this.touchStartX = 0;
-        this.touchStartY = 0;
-        this.isTouching = false;
-        this.bindEvents();
-    }
-
-    bindEvents() {
-        // Keyboard controls
-        document.addEventListener('keydown', (e) => this.handleKeyPress(e));
-        
-        // Mouse movement view control - edge trigger
-        const gameScreen = document.getElementById('game-screen');
-        gameScreen.addEventListener('mousemove', (e) => this.handleMouseMove(e));
-        
-        // Touch controls for mobile
-        gameScreen.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: false });
-        gameScreen.addEventListener('touchmove', (e) => this.handleTouchMove(e), { passive: false });
-        gameScreen.addEventListener('touchend', (e) => this.handleTouchEnd(e), { passive: false });
-    }
-
-    handleKeyPress(e) {
-        // ==================== 作弊键（生产环境请注释掉） ====================
-        
-        // F9 作弊键：跳过当前夜晚（调试用）
-        if (e.key === 'F9') {
-            e.preventDefault();
-            if (this.game.state.isGameRunning) {
-                console.log('🎮 CHEAT: Skipping current night...');
-                
-                // 显示作弊提示
-                this.showCheatNotification('Skipping Night ' + this.game.state.currentNight);
-                
-                // 延迟执行，让玩家看到提示
-                setTimeout(() => {
-                    this.game.winNight();
-                }, 500);
-            }
-            return;
-        }
-        
-        // F10 作弊键：解锁特殊夜晚（调试用）
-        if (e.key === 'F10') {
-            e.preventDefault();
-            console.log('🎮 CHEAT: Unlocking Special Night...');
-            localStorage.setItem('night6Unlocked', 'true');
-            this.showCheatNotification('Special Night Unlocked!');
-            
-            // 如果在主菜单，立即更新按钮显示
-            if (this.game.mainMenu && !this.game.mainMenu.classList.contains('hidden')) {
-                this.game.updateContinueButton();
-            }
-            return;
-        }
-        
-        /*
-        // F7 作弊键：时间加速（测试用）
-        if (e.key === 'F7') {
-            e.preventDefault();
-            if (this.game.state.isGameRunning) {
-                this.game.state.currentTime += 1;
-                this.game.ui.update();
-                this.showCheatNotification(`Time: ${this.game.state.currentTime} AM`);
-                
-                if (this.game.state.currentTime >= 6) {
-                    this.game.winNight();
-                }
-            }
-            return;
-        }
-        
-        // 数字键1-6：快速跳到对应关卡（测试用，仅在主菜单有效）
-        if (e.key >= '1' && e.key <= '6') {
-            if (this.game.mainMenu && !this.game.mainMenu.classList.contains('hidden')) {
-                e.preventDefault();
-                const night = parseInt(e.key);
-                console.log(`🎮 CHEAT: Jumping to Night ${night}...`);
-                this.game.state.currentNight = night;
-                this.showCheatNotification(`Starting Night ${night}`);
-                
-                // 如果是Night 6，需要先解锁
-                if (night === 6) {
-                    localStorage.setItem('night6Unlocked', 'true');
-                    setTimeout(() => this.game.startSpecialNight(), 500);
-                } else {
-                    setTimeout(() => this.game.initGame(), 500);
-                }
-                
-                this.game.mainMenu.classList.add('hidden');
-                const menuMusic = document.getElementById('menu-music');
-                if (menuMusic) {
-                    menuMusic.pause();
-                    menuMusic.currentTime = 0;
-                }
-            }
-            return;
-        }
-        */
-        // ==================== 作弊键结束 ====================
-        
-        if (!this.game.state.isGameRunning) return;
-        
-        switch(e.key.toLowerCase()) {
-            case 'v': 
-                this.game.toggleVents(); 
-                break;
-            case ' ': 
-                e.preventDefault();
-                this.game.toggleCamera();
-                break;
-        }
-    }
-    
-    // 作弊通知
-    showCheatNotification(message) {
-        // 创建通知元素
-        const notification = document.createElement('div');
-        notification.style.position = 'fixed';
-        notification.style.top = '10px';
-        notification.style.left = '50%';
-        notification.style.transform = 'translateX(-50%)';
-        notification.style.background = 'rgba(255, 215, 0, 0.9)';
-        notification.style.color = '#000';
-        notification.style.padding = '10px 20px';
-        notification.style.fontSize = '20px';
-        notification.style.fontWeight = 'bold';
-        notification.style.fontFamily = 'Arial, sans-serif';
-        notification.style.borderRadius = '5px';
-        notification.style.zIndex = '99999';
-        notification.style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.8)';
-        notification.textContent = '🎮 CHEAT: ' + message;
-        
-        document.body.appendChild(notification);
-        
-        // 1秒后移除
-        setTimeout(() => {
-            notification.remove();
-        }, 1000);
-    }
-
-    handleMouseMove(e) {
-        if (!this.game.state.isGameRunning || this.game.state.cameraOpen) return;
-        
-        const edgeThreshold = 100;
-        const mouseX = e.clientX;
-        const screenWidth = window.innerWidth;
-        
-        // Check if at left edge
-        if (mouseX < edgeThreshold) {
-            this.game.isRotatingLeft = true;
-            this.game.isRotatingRight = false;
-        }
-        // Check if at right edge
-        else if (mouseX > screenWidth - edgeThreshold) {
-            this.game.isRotatingRight = true;
-            this.game.isRotatingLeft = false;
-        }
-        // In middle area, stop rotation
-        else {
-            this.game.isRotatingLeft = false;
-            this.game.isRotatingRight = false;
-        }
-    }
-    
-    handleTouchStart(e) {
-        if (!this.game.state.isGameRunning || this.game.state.cameraOpen) return;
-        
-        // Don't prevent default if touching UI elements
-        const target = e.target;
-        if (target.closest('.hotspot') || target.closest('.control-panel-button') || 
-            target.closest('.camera-button') || target.closest('#control-panel-popup')) {
-            return;
-        }
-        
-        e.preventDefault();
-        
-        const touch = e.touches[0];
-        this.touchStartX = touch.clientX;
-        this.touchStartY = touch.clientY;
-        this.isTouching = true;
-    }
-    
-    handleTouchMove(e) {
-        if (!this.game.state.isGameRunning || this.game.state.cameraOpen || !this.isTouching) return;
-        
-        // Don't prevent default if touching UI elements
-        const target = e.target;
-        if (target.closest('.hotspot') || target.closest('.control-panel-button') || 
-            target.closest('.camera-button') || target.closest('#control-panel-popup')) {
-            return;
-        }
-        
-        e.preventDefault();
-        
-        const touch = e.touches[0];
-        const deltaX = touch.clientX - this.touchStartX;
-        const deltaY = Math.abs(touch.clientY - this.touchStartY);
-        
-        // Only rotate if horizontal swipe (not vertical)
-        if (deltaY < 50) {
-            const sensitivity = 0.002;
-            // Reverse the direction: swipe right = view right, swipe left = view left
-            const movement = -deltaX * sensitivity;
-            
-            // Update view position directly
-            this.game.viewPosition += movement;
-            this.game.viewPosition = Math.max(0, Math.min(1, this.game.viewPosition));
-            this.game.ui.updateViewPosition(this.game.viewPosition);
-            
-            // Update touch start position for smooth continuous movement
-            this.touchStartX = touch.clientX;
-            this.touchStartY = touch.clientY;
-        }
-    }
-    
-    handleTouchEnd(e) {
-        if (!this.game.state.isGameRunning) return;
-        
-        this.isTouching = false;
-        this.game.isRotatingLeft = false;
-        this.game.isRotatingRight = false;
-    }
-}
-
-
+<script>
+/* js/main.js */
 // 游戏入口 - 初始化所有模块
 let game;
 let staticNoise;
@@ -6061,8 +7893,8 @@ function updatePreloadProgress(progress) {
 
 // 预加载所有游戏资源
 async function preloadGameAssets() {
-    const basePath = window.location.pathname.includes('/FNAE-HTML5-1.1.5/') 
-        ? '/FNAE-HTML5-1.1.5/' 
+    const basePath = window.location.pathname.includes('/FNAE-HTML5-1.2.2-fix/') 
+        ? '/FNAE-HTML5-1.2.2-fix/' 
         : './';
     
     // 定义所有需要预加载的资源
@@ -6272,740 +8104,7 @@ window.addEventListener('message', (event) => {
     }
 });
 
-
-// 恐怖脸闪烁效果
-const getBasePath = () => {
-    const currentPath = window.location.pathname;
-    if (currentPath.includes('/FNAE-HTML5-1.1.5/')) {
-        return '/FNAE-HTML5-1.1.5/';
-    }
-    return './';
-};
-
-const basePath = getBasePath();
-const normalBackground = `${basePath}assets/images/menubackground.png`;
-const scaryBackgrounds = [
-    `${basePath}assets/images/scaryhawk.png`,
-    `${basePath}assets/images/scaryep.png`,
-    `${basePath}assets/images/scarytrump.png`
-];
-
-let scaryFaceInterval = null;
-const preloadedImages = {};
-
-// 预加载所有背景图片
-function preloadBackgrounds() {
-    const normalImg = new Image();
-    normalImg.src = normalBackground;
-    preloadedImages['normal'] = normalImg;
-    
-    scaryBackgrounds.forEach((bg, index) => {
-        const img = new Image();
-        img.src = bg;
-        preloadedImages[`scary-${index}`] = img;
-    });
-}
-
-function startScaryFaceFlicker() {
-    if (scaryFaceInterval) {
-        stopScaryFaceFlicker();
-    }
-    
-    const mainMenu = document.getElementById('main-menu');
-    if (!mainMenu) return;
-    
-    scaryFaceInterval = setInterval(() => {
-        if (Math.random() < 0.1) {
-            const bgIndex = Math.floor(Math.random() * 3);
-            const scaryBg = scaryBackgrounds[bgIndex];
-            
-            mainMenu.style.backgroundImage = `url('${scaryBg}')`;
-            
-            const hideDelay = 50 + Math.random() * 150;
-            setTimeout(() => {
-                mainMenu.style.backgroundImage = `url('${normalBackground}')`;
-            }, hideDelay);
-        }
-    }, 100);
-}
-
-function stopScaryFaceFlicker() {
-    if (scaryFaceInterval) {
-        clearInterval(scaryFaceInterval);
-        scaryFaceInterval = null;
-        
-        const mainMenu = document.getElementById('main-menu');
-        if (mainMenu) {
-            mainMenu.style.backgroundImage = `url('${normalBackground}')`;
-        }
-    }
-}
-
-
-// 静态噪点效果
-class StaticNoise {
-    constructor() {
-        this.canvas = document.getElementById('static-canvas');
-        if (!this.canvas) {
-            console.error('Static canvas not found');
-            return;
-        }
-        
-        this.ctx = this.canvas.getContext('2d');
-        this.isRunning = false;
-        this.animationId = null;
-        this.resize();
-        window.addEventListener('resize', () => this.resize());
-    }
-
-    resize() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
-    }
-
-    start() {
-        if (this.isRunning) return;
-        this.isRunning = true;
-        this.canvas.style.display = 'block';
-        this.animate();
-    }
-
-    stop() {
-        this.isRunning = false;
-        this.canvas.style.display = 'none';
-        if (this.animationId) {
-            cancelAnimationFrame(this.animationId);
-            this.animationId = null;
-        }
-    }
-
-    animate() {
-        if (!this.ctx || !this.isRunning) return;
-        
-        const width = this.canvas.width;
-        const height = this.canvas.height;
-        const imageData = this.ctx.createImageData(width, height);
-        const data = imageData.data;
-
-        // 生成更强烈的随机噪点（电视雪花效果）
-        for (let i = 0; i < data.length; i += 4) {
-            const value = Math.random() > 0.5 ? 255 : 0;
-            data[i] = value;
-            data[i + 1] = value;
-            data[i + 2] = value;
-            data[i + 3] = Math.random() * 255;
-        }
-
-        this.ctx.putImageData(imageData, 0, 0);
-        this.animationId = requestAnimationFrame(() => this.animate());
-    }
-}
-
-
-// UI Manager
-class UIManager {
-    constructor(game) {
-        this.game = game;
-        this.initElements();
-    }
-
-    initElements() {
-        this.powerValue = document.getElementById('power-value');
-        this.timeValue = document.getElementById('time-value');
-        this.nightValue = document.getElementById('night-value');
-        this.currentSceneImg = document.getElementById('current-scene');
-    }
-
-    update() {
-        this.powerValue.textContent = Math.floor(this.game.state.oxygen);
-        this.timeValue.textContent = `${this.game.state.currentTime === 0 ? 12 : this.game.state.currentTime} AM`;
-        this.nightValue.textContent = this.game.state.currentNight;
-        
-        // Only update scene image when camera is not open
-        if (!this.game.state.cameraOpen) {
-            const sceneKey = 'office';
-            if (this.game.assets.images[sceneKey]) {
-                this.currentSceneImg.src = this.game.assets.images[sceneKey].src;
-                this.currentSceneImg.style.display = 'block';
-            }
-        }
-        
-        // Flash warning when oxygen below 40%
-        if (this.game.state.oxygen <= 40 && this.game.state.ventsClosed) {
-            this.powerValue.classList.add('flicker');
-        } else {
-            this.powerValue.classList.remove('flicker');
-        }
-        
-        // Update camera status
-        this.updateCameraStatus();
-    }
-
-    createHotspots() {
-        const hotspotsContainer = document.getElementById('hotspots');
-        hotspotsContainer.innerHTML = '';
-        
-        // Create control panel button (special style)
-        this.createControlPanelButton();
-        
-        // Create camera button (special style)
-        this.createCameraButton();
-        
-        // Bind close camera button event
-        this.bindCloseCameraButton();
-    }
-
-    createControlPanelButton() {
-        const hotspotsContainer = document.getElementById('hotspots');
-        
-        const controlBtn = document.createElement('div');
-        controlBtn.id = 'vents-btn';
-        controlBtn.className = 'control-panel-button';
-        controlBtn.style.position = 'absolute';
-        controlBtn.style.left = '0';
-        controlBtn.style.bottom = '0';
-        controlBtn.style.width = '25vw';
-        controlBtn.style.height = '10vh';
-        controlBtn.style.background = 'rgba(0, 0, 0, 0.7)';
-        controlBtn.style.border = '2px solid rgba(255, 255, 255, 0.3)';
-        controlBtn.style.borderLeft = 'none';
-        controlBtn.style.borderBottom = 'none';
-        controlBtn.style.display = 'flex';
-        controlBtn.style.flexDirection = 'row';
-        controlBtn.style.alignItems = 'center';
-        controlBtn.style.justifyContent = 'space-between';
-        controlBtn.style.cursor = 'pointer';
-        controlBtn.style.opacity = '0';
-        controlBtn.style.transition = 'opacity 0.3s, background 0.3s';
-        controlBtn.style.padding = '0 1.5vw';
-        controlBtn.style.pointerEvents = 'none';
-        
-        // Left arrows container
-        const leftArrows = document.createElement('div');
-        leftArrows.style.display = 'flex';
-        leftArrows.style.gap = '0.8vw';
-        leftArrows.className = 'control-arrows';
-        leftArrows.style.flexShrink = '0';
-        
-        const arrowLeft1 = document.createElement('div');
-        arrowLeft1.innerHTML = '▲';
-        arrowLeft1.style.color = '#fff';
-        arrowLeft1.style.fontSize = '2vw';
-        arrowLeft1.style.lineHeight = '1';
-        leftArrows.appendChild(arrowLeft1);
-        
-        const arrowLeft2 = document.createElement('div');
-        arrowLeft2.innerHTML = '▲';
-        arrowLeft2.style.color = '#fff';
-        arrowLeft2.style.fontSize = '2vw';
-        arrowLeft2.style.lineHeight = '1';
-        leftArrows.appendChild(arrowLeft2);
-        
-        controlBtn.appendChild(leftArrows);
-        
-        // CONTROL PANEL text
-        const text = document.createElement('div');
-        text.textContent = 'CONTROL PANEL';
-        text.style.color = '#fff';
-        text.style.fontSize = '1.8vw';
-        text.style.fontWeight = 'bold';
-        text.style.fontFamily = 'Arial, sans-serif';
-        text.style.letterSpacing = '0.15vw';
-        text.style.whiteSpace = 'nowrap';
-        text.style.flex = '1';
-        text.style.textAlign = 'center';
-        controlBtn.appendChild(text);
-        
-        // Right arrows container
-        const rightArrows = document.createElement('div');
-        rightArrows.style.display = 'flex';
-        rightArrows.style.gap = '0.8vw';
-        rightArrows.className = 'control-arrows';
-        rightArrows.style.flexShrink = '0';
-        
-        const arrowRight1 = document.createElement('div');
-        arrowRight1.innerHTML = '▲';
-        arrowRight1.style.color = '#fff';
-        arrowRight1.style.fontSize = '2vw';
-        arrowRight1.style.lineHeight = '1';
-        rightArrows.appendChild(arrowRight1);
-        
-        const arrowRight2 = document.createElement('div');
-        arrowRight2.innerHTML = '▲';
-        arrowRight2.style.color = '#fff';
-        arrowRight2.style.fontSize = '2vw';
-        arrowRight2.style.lineHeight = '1';
-        rightArrows.appendChild(arrowRight2);
-        
-        controlBtn.appendChild(rightArrows);
-        
-        // Hover effect
-        controlBtn.addEventListener('mouseenter', () => {
-            controlBtn.style.background = 'rgba(0, 0, 0, 0.9)';
-        });
-        
-        controlBtn.addEventListener('mouseleave', () => {
-            controlBtn.style.background = 'rgba(0, 0, 0, 0.7)';
-        });
-        
-        // Click event - open control panel popup
-        controlBtn.addEventListener('click', () => {
-            this.toggleControlPanel();
-            setTimeout(() => this.updateControlPanelArrows(), 50);
-        });
-        
-        hotspotsContainer.appendChild(controlBtn);
-    }
-
-    updateControlPanelArrows() {
-        const controlBtn = document.getElementById('vents-btn');
-        if (!controlBtn) return;
-        
-        const arrows = controlBtn.querySelectorAll('.control-arrows div');
-        const isOpen = document.getElementById('control-panel-popup') && 
-                      !document.getElementById('control-panel-popup').classList.contains('hidden');
-        
-        // Before panel opens: arrows point up ▲
-        // Before panel closes: arrows point down ▼
-        arrows.forEach((arrow) => {
-            arrow.innerHTML = isOpen ? '▼' : '▲';
-        });
-    }
-
-    toggleControlPanel() {
-        const panel = document.getElementById('control-panel-popup');
-        if (panel) {
-            const wasHidden = panel.classList.contains('hidden');
-            
-            // 如果要关闭面板，检查是否有操作正在进行
-            if (!wasHidden && this.game.state.controlPanelBusy) {
-                // console.log('Cannot close control panel: operation in progress');
-                return; // 阻止关闭，不显示任何消息
-            }
-            
-            panel.classList.toggle('hidden');
-            
-            // Control view rotation
-            if (wasHidden) {
-                // Open panel, stop rotation
-                this.game.isRotatingLeft = false;
-                this.game.isRotatingRight = false;
-                this.game.state.controlPanelOpen = true;
-            } else {
-                // Close panel
-                this.game.state.controlPanelOpen = false;
-            }
-        } else {
-            this.createControlPanelPopup();
-            this.game.isRotatingLeft = false;
-            this.game.isRotatingRight = false;
-            this.game.state.controlPanelOpen = true;
-        }
-    }
-
-    createControlPanelPopup() {
-        const popup = document.createElement('div');
-        popup.id = 'control-panel-popup';
-        popup.style.position = 'fixed';
-        popup.style.top = '10vh';
-        popup.style.left = '10vw';
-        popup.style.width = '70vw';
-        popup.style.minHeight = '60vh';
-        popup.style.background = '#000';
-        popup.style.border = '4px solid #0f0';
-        popup.style.padding = '4vh 4vw';
-        popup.style.zIndex = '100';
-        popup.style.fontFamily = "'Courier New', monospace";
-        popup.style.color = '#0f0';
-        
-        // Title
-        const title = document.createElement('div');
-        title.textContent = '/// Control Panel';
-        title.style.fontSize = '2.5vw';
-        title.style.fontWeight = 'bold';
-        title.style.marginBottom = '5vh';
-        popup.appendChild(title);
-        
-        // Options container
-        const optionsContainer = document.createElement('div');
-        optionsContainer.id = 'control-options';
-        
-        // Option 1: Air Vents
-        const option1 = document.createElement('div');
-        option1.id = 'option-vents';
-        option1.style.fontSize = '2.5vw';
-        option1.style.marginBottom = '4vh';
-        option1.style.cursor = 'pointer';
-        option1.style.padding = '1.5vh 0';
-        option1.style.display = 'flex';
-        option1.style.alignItems = 'center';
-        option1.style.direction = 'ltr'; // 强制从左到右
-        option1.innerHTML = this.game.state.ventsClosed ? 
-            '<span class="option-arrow" style="color: #0f0; margin-right: 1.5vw; width: 2vw;">&gt;</span><span>Open Air Vents</span><span id="vents-dots" style="margin-left: 1vw; direction: ltr; font-family: \'Courier New\', monospace;"></span>' :
-            '<span class="option-arrow" style="color: #0f0; margin-right: 1.5vw; width: 2vw;">&gt;</span><span>Close Air Vents</span><span id="vents-dots" style="margin-left: 1vw; direction: ltr; font-family: \'Courier New\', monospace;"></span>';
-        option1.addEventListener('click', () => {
-            this.game.toggleVents();
-            // 不在这里立即更新，等toggleVents完成后会自动调用updateControlPanelOptions
-        });
-        optionsContainer.appendChild(option1);
-        
-        // Option 2: Restart Cameras
-        const option2 = document.createElement('div');
-        option2.id = 'option-cameras';
-        option2.style.fontSize = '2.5vw';
-        option2.style.cursor = 'pointer';
-        option2.style.padding = '1.5vh 0';
-        option2.style.display = 'flex';
-        option2.style.alignItems = 'center';
-        option2.style.direction = 'ltr'; // 强制从左到右
-        option2.innerHTML = '<span class="option-arrow" style="color: transparent; margin-right: 1.5vw; width: 2vw;">&gt;</span><span>Restart Cameras</span><span id="camera-dots" style="margin-left: 1vw; direction: ltr; font-family: \'Courier New\', monospace;"></span><span id="camera-status" style="margin-left: auto; padding-right: 2vw; direction: ltr;"></span>';
-        option2.addEventListener('click', () => {
-            this.selectControlOption('cameras');
-            this.handleRestartCamera();
-        });
-        optionsContainer.appendChild(option2);
-        
-        popup.appendChild(optionsContainer);
-        
-        // Click outside to close (only if no operation in progress)
-        document.addEventListener('click', (e) => {
-            if (!popup.contains(e.target) && e.target.id !== 'vents-btn' && !e.target.closest('#vents-btn')) {
-                // 检查是否有操作正在进行
-                if (this.game.state.controlPanelBusy) {
-                    // console.log('Cannot close control panel: operation in progress');
-                    return; // 阻止关闭，不显示任何消息
-                }
-                
-                popup.classList.add('hidden');
-                this.game.state.controlPanelOpen = false;
-                this.updateControlPanelArrows();
-            }
-        });
-        
-        document.body.appendChild(popup);
-    }
-
-    selectControlOption(option) {
-        const option1 = document.getElementById('option-vents');
-        const option2 = document.getElementById('option-cameras');
-        
-        if (option === 'vents') {
-            const arrow1 = option1.querySelector('.option-arrow');
-            const arrow2 = option2.querySelector('.option-arrow');
-            if (arrow1) arrow1.style.color = '#0f0';
-            if (arrow2) arrow2.style.color = 'transparent';
-            
-            // 更新通风口文本（不包括dots span）
-            const text1 = option1.querySelector('span:nth-child(2)');
-            if (text1) {
-                text1.textContent = this.game.state.ventsClosed ? 'Open Air Vents' : 'Close Air Vents';
-            }
-        } else {
-            const arrow1 = option1.querySelector('.option-arrow');
-            const arrow2 = option2.querySelector('.option-arrow');
-            if (arrow1) arrow1.style.color = 'transparent';
-            if (arrow2) arrow2.style.color = '#0f0';
-        }
-    }
-
-    updateControlPanelOptions() {
-        this.selectControlOption('vents');
-        this.updateCameraStatus();
-        this.updateVentsStatus(); // 添加通风口状态更新
-    }
-    
-    // Update vents status display (dots animation)
-    updateVentsStatus() {
-        const dotsSpan = document.getElementById('vents-dots');
-        if (!dotsSpan) return;
-        
-        if (this.game.state.ventsToggling) {
-            // 正在切换，显示点动画
-            dotsSpan.style.color = '#0f0'; // Green dots
-            if (!dotsSpan.dataset.animating) {
-                dotsSpan.dataset.animating = 'true';
-                this.animateLoadingDots(dotsSpan);
-            }
-        } else {
-            // 不在切换中，清空点
-            dotsSpan.textContent = '';
-            delete dotsSpan.dataset.animating;
-        }
-    }
-    
-    // Update camera status display
-    updateCameraStatus() {
-        const statusSpan = document.getElementById('camera-status');
-        const dotsSpan = document.getElementById('camera-dots');
-        if (!statusSpan) return;
-        
-        if (this.game.state.cameraRestarting) {
-            // Restarting, show dots after button
-            if (dotsSpan) {
-                dotsSpan.style.color = '#0f0'; // Green dots
-                if (!dotsSpan.dataset.animating) {
-                    dotsSpan.dataset.animating = 'true';
-                    this.animateLoadingDots(dotsSpan);
-                }
-            }
-            // 只有在摄像头确实故障时才显示ERR
-            if (this.game.state.cameraFailed) {
-                statusSpan.style.color = '#f00';
-                statusSpan.textContent = 'ERR';
-            } else {
-                // 没有故障时，重启期间不显示ERR
-                statusSpan.textContent = '';
-            }
-        } else if (this.game.state.cameraFailed) {
-            // Failed, show ERR on right, no dots
-            if (dotsSpan) {
-                dotsSpan.textContent = '';
-                delete dotsSpan.dataset.animating;
-            }
-            statusSpan.style.color = '#f00';
-            statusSpan.textContent = 'ERR';
-        } else {
-            // Normal, don't show anything
-            if (dotsSpan) {
-                dotsSpan.textContent = '';
-                delete dotsSpan.dataset.animating;
-            }
-            statusSpan.textContent = '';
-        }
-    }
-    
-    // Animate loading dots (green dots after button)
-    animateLoadingDots(element) {
-        const states = ['.', '..', '...'];
-        let index = 0;
-        
-        const animate = () => {
-            if (!element.dataset.animating) return;
-            
-            element.textContent = states[index];
-            // console.log('Dots animation:', states[index]); // 调试输出
-            index = (index + 1) % states.length;
-            
-            setTimeout(animate, 500); // Switch every 0.5s
-        };
-        
-        animate();
-    }
-    
-    // Animate display (dots after button, ERR on right) - 不再使用
-    animateLoadingDotsWithERR(element) {
-        // 已废弃，使用 animateLoadingDots 代替
-    }
-    
-    // Handle restart camera
-    handleRestartCamera() {
-        // 允许在摄像头没有故障时也能重启（作为策略使用）
-        if (!this.game.state.cameraRestarting && !this.game.state.controlPanelBusy) {
-            // console.log('Restarting cameras...');
-            this.game.camera.restartCamera();
-            
-            // Immediately update status display (show loading animation, but ERR doesn't disappear)
-            this.updateCameraStatus();
-            
-            // Update status display every 100ms
-            const updateInterval = setInterval(() => {
-                this.updateCameraStatus();
-                if (!this.game.state.cameraRestarting) {
-                    clearInterval(updateInterval);
-                }
-            }, 100);
-        }
-    }
-
-    createCameraButton() {
-        const hotspotsContainer = document.getElementById('hotspots');
-        
-        const cameraBtn = document.createElement('div');
-        cameraBtn.id = 'camera-btn';
-        cameraBtn.className = 'camera-button';
-        cameraBtn.style.position = 'absolute';
-        cameraBtn.style.right = '0';
-        cameraBtn.style.top = '25%';
-        cameraBtn.style.width = '6vw';
-        cameraBtn.style.height = '45vh';
-        cameraBtn.style.background = 'rgba(0, 0, 0, 0.7)';
-        cameraBtn.style.border = '2px solid rgba(255, 255, 255, 0.3)';
-        cameraBtn.style.borderRight = 'none';
-        cameraBtn.style.display = 'flex';
-        cameraBtn.style.flexDirection = 'column';
-        cameraBtn.style.alignItems = 'center';
-        cameraBtn.style.justifyContent = 'space-between';
-        cameraBtn.style.cursor = 'pointer';
-        cameraBtn.style.opacity = '0';
-        cameraBtn.style.transition = 'opacity 0.3s, background 0.3s';
-        cameraBtn.style.padding = '2vh 0';
-        cameraBtn.style.pointerEvents = 'none';
-        
-        // Top arrows container
-        const topArrows = document.createElement('div');
-        topArrows.style.display = 'flex';
-        topArrows.style.flexDirection = 'column';
-        topArrows.style.gap = '0.5vh';
-        
-        // Top arrow (points left when closed)
-        const arrowTop = document.createElement('div');
-        arrowTop.innerHTML = '◄';
-        arrowTop.className = 'camera-arrow';
-        arrowTop.style.color = '#fff';
-        arrowTop.style.fontSize = '1.8vw';
-        arrowTop.style.transform = 'rotate(0deg)';
-        arrowTop.style.lineHeight = '1';
-        topArrows.appendChild(arrowTop);
-        
-        // Second arrow
-        const arrowTop2 = document.createElement('div');
-        arrowTop2.innerHTML = '◄';
-        arrowTop2.className = 'camera-arrow';
-        arrowTop2.style.color = '#fff';
-        arrowTop2.style.fontSize = '1.8vw';
-        arrowTop2.style.transform = 'rotate(0deg)';
-        arrowTop2.style.lineHeight = '1';
-        topArrows.appendChild(arrowTop2);
-        
-        cameraBtn.appendChild(topArrows);
-        
-        // CAMERA text (horizontal text rotated 90 degrees counterclockwise)
-        const text = document.createElement('div');
-        text.textContent = 'CAMERA';
-        text.style.color = '#fff';
-        text.style.fontSize = '1.3vw';
-        text.style.fontWeight = 'bold';
-        text.style.fontFamily = 'Arial, sans-serif';
-        text.style.transform = 'rotate(-90deg)';
-        text.style.letterSpacing = '0.2vw';
-        text.style.whiteSpace = 'nowrap';
-        cameraBtn.appendChild(text);
-        
-        // Bottom arrows container
-        const bottomArrows = document.createElement('div');
-        bottomArrows.style.display = 'flex';
-        bottomArrows.style.flexDirection = 'column';
-        bottomArrows.style.gap = '0.5vh';
-        
-        // Bottom arrow
-        const arrowBottom = document.createElement('div');
-        arrowBottom.innerHTML = '◄';
-        arrowBottom.className = 'camera-arrow';
-        arrowBottom.style.color = '#fff';
-        arrowBottom.style.fontSize = '1.8vw';
-        arrowBottom.style.transform = 'rotate(0deg)';
-        arrowBottom.style.lineHeight = '1';
-        bottomArrows.appendChild(arrowBottom);
-        
-        // Second bottom arrow
-        const arrowBottom2 = document.createElement('div');
-        arrowBottom2.innerHTML = '◄';
-        arrowBottom2.className = 'camera-arrow';
-        arrowBottom2.style.color = '#fff';
-        arrowBottom2.style.fontSize = '1.8vw';
-        arrowBottom2.style.transform = 'rotate(0deg)';
-        arrowBottom2.style.lineHeight = '1';
-        bottomArrows.appendChild(arrowBottom2);
-        
-        cameraBtn.appendChild(bottomArrows);
-        
-        // Hover effect
-        cameraBtn.addEventListener('mouseenter', () => {
-            cameraBtn.style.background = 'rgba(0, 0, 0, 0.9)';
-        });
-        
-        cameraBtn.addEventListener('mouseleave', () => {
-            cameraBtn.style.background = 'rgba(0, 0, 0, 0.7)';
-        });
-        
-        // Click event
-        cameraBtn.addEventListener('click', () => {
-            // console.log('📷 Camera button clicked!');
-            this.game.toggleCamera();
-            // Delay arrow update, wait for state change
-            setTimeout(() => this.updateCameraButtonArrows(), 50);
-        });
-        
-        hotspotsContainer.appendChild(cameraBtn);
-    }
-
-    bindCloseCameraButton() {
-        // Close button removed - camera button is now always accessible
-    }
-
-    updateCameraButtonArrows() {
-        const cameraBtn = document.getElementById('camera-btn');
-        if (!cameraBtn) return;
-        
-        const arrows = cameraBtn.querySelectorAll('.camera-arrow');
-        const isOpen = this.game.state.cameraOpen;
-        
-        // Update arrow direction
-        // Before opening (closed state): arrows point left (0deg)
-        // Before closing (open state): arrows point right (180deg)
-        arrows.forEach((arrow) => {
-            arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
-        });
-    }
-
-    updateHotspotVisibility(viewPosition) {
-        const ventsBtn = document.getElementById('vents-btn');
-        const cameraBtn = document.getElementById('camera-btn');
-        
-        // console.log('🔍 updateHotspotVisibility - viewPosition:', viewPosition);
-        
-        // Show control panel when view is at far left (viewPosition = 0)
-        if (ventsBtn) {
-            ventsBtn.style.opacity = viewPosition < 0.15 ? '1' : '0';
-            ventsBtn.style.pointerEvents = viewPosition < 0.15 ? 'auto' : 'none';
-        }
-        
-        // Show camera button when view is at far right (viewPosition = 1)
-        if (cameraBtn) {
-            const isVisible = viewPosition > 0.85;
-            cameraBtn.style.opacity = isVisible ? '1' : '0';
-            cameraBtn.style.pointerEvents = isVisible ? 'auto' : 'none';
-            // console.log('📷 Camera button - opacity:', cameraBtn.style.opacity, 'pointerEvents:', cameraBtn.style.pointerEvents);
-        }
-    }
-
-    showTooltip(event, text) {
-        let tooltip = document.getElementById('game-tooltip');
-        if (!tooltip) {
-            tooltip = document.createElement('div');
-            tooltip.id = 'game-tooltip';
-            tooltip.style.position = 'fixed';
-            tooltip.style.background = 'rgba(0, 0, 0, 0.8)';
-            tooltip.style.color = 'white';
-            tooltip.style.padding = '8px 12px';
-            tooltip.style.borderRadius = '4px';
-            tooltip.style.fontSize = '14px';
-            tooltip.style.pointerEvents = 'none';
-            tooltip.style.zIndex = '10000';
-            tooltip.style.whiteSpace = 'nowrap';
-            document.body.appendChild(tooltip);
-        }
-        
-        tooltip.textContent = text;
-        tooltip.style.display = 'block';
-        tooltip.style.left = event.clientX + 10 + 'px';
-        tooltip.style.top = event.clientY + 10 + 'px';
-    }
-
-    hideTooltip() {
-        const tooltip = document.getElementById('game-tooltip');
-        if (tooltip) {
-            tooltip.style.display = 'none';
-        }
-    }
-
-    updateViewPosition(viewPosition) {
-        const offset = -viewPosition * 50;
-        this.currentSceneImg.style.left = `${offset}%`;
-        this.updateHotspotVisibility(viewPosition);
-    }
-}
-
 </script>
+
 </body>
 </html>
